@@ -22,7 +22,7 @@ export class UserService {
     }
 
     deleteUser(id:any){
-        return  this.http.delete("http://127.0.0.1:8000/api/delete/"+id);
+        return  this.http.delete("http://127.0.0.1:8000/api/destroy/"+id);
        }
        
     updateUser(data:any , id:any){
@@ -32,7 +32,7 @@ export class UserService {
      
        } 
     saveUser(data:any):Observable<any>{
-        return this.http.post("http://127.0.0.1/api/save", data);
+        return this.http.post("http://127.0.0.1:8000/api/save", data);
      }
 
 }

@@ -58,6 +58,7 @@ export class AdministrateurComponent implements OnInit {
             name: this.user.name, 
             phone: this.user.phone,
             email: this.user.email,
+            password:this.user.password
           };
     
       console.log("user", this.user);
@@ -97,7 +98,7 @@ export class AdministrateurComponent implements OnInit {
     deleteUser(user: User) {
  
       this.confirmationService.confirm({
-          message: 'Are you sure you want to delete'   + user.name +'?',
+          message: 'Are you sure you want to delete  ' + user.name +'?',
           header: 'Confirm',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {

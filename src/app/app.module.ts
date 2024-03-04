@@ -35,6 +35,8 @@ import { HomeComponent } from './components/dash/home/home.component';
 import { StyleClassModule } from 'primeng/styleclass';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuModule } from 'primeng/menu';
+import { ChangePasswordRequestComponent } from './auth/change-password-request/change-password-request.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 
 
@@ -48,6 +50,8 @@ import { MenuModule } from 'primeng/menu';
     NavbarComponent,
     SideBarComponent,
     HomeComponent,
+    ChangePasswordRequestComponent,
+    ChangePasswordComponent,
   
   ],
   imports: [
