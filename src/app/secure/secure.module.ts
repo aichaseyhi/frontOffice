@@ -27,6 +27,7 @@ import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProduitsComponent } from './produits/produits.component';
+import { StoresComponent } from './stores/stores.component';
 
 
 
@@ -36,6 +37,7 @@ import { ProduitsComponent } from './produits/produits.component';
     FournisseurComponent,
     InstagrammersComponent,
     ProduitsComponent,
+    StoresComponent,
     
     
    

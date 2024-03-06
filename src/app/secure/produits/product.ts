@@ -1,7 +1,8 @@
 export interface Product {
     id?:string;
     name?:string;
-    email?:string;
-    phone?:string;
-    password?:string;
+    description?:string;
+    quantity?:number;
+    price?:number;
+    image?:string;
 }

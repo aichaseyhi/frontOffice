@@ -55,9 +55,10 @@ export class ProduitsComponent implements OnInit {
   
       const Data = {
             name: this.product.name, 
-            phone: this.product.phone,
-            email: this.product.email,
-            password:this.product.password
+            description: this.product.description,
+            quantity: this.product.quantity,
+            price:this.product.price,
+            image:this.product.image,
           };
     
       console.log("product", this.product);

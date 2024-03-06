@@ -8,8 +8,8 @@
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" style="margin-left: 10px;"></button>
         </ng-template>
     </p-toolbar>
 
@@ -33,7 +33,7 @@
             <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
             <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
-            <th pSortableColumn="password">Password <p-sortIcon field="password"></p-sortIcon></th>
+            <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
             <th></th>
         </tr>
     </ng-template>
@@ -48,7 +48,7 @@
             <td>{{users.password}}</td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(users)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(users)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(users)" style="margin-left: 10px;"></button>
             </td>
         </tr>
     </ng-template>
@@ -78,9 +78,9 @@
             <small class="p-invalid" *ngIf="submitted && !user.phone">phone is required.</small>
         </div>
         <div class="p-field">
-            <label for="phone">Password</label>
-            <input type="text" pInputText id="phone" [(ngModel)]="user.password" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !user.phone">password is required.</small>
+            <label for="password">Password</label>
+            <input type="text" pInputText id="password" [(ngModel)]="user.password" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !user.password">password is required.</small>
         </div>
     
 </ng-template>
