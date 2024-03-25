@@ -21,6 +21,12 @@ export class UserService {
      return this.http.get("http://127.0.0.1:8000/api/users")
     }
 
+    getUsersByRole(Role:any):Observable<any>
+    { 
+      
+     return this.http.get("http://127.0.0.1:8000/api/user/"+Role)
+    }
+
     deleteUser(id:any){
         return  this.http.delete("http://127.0.0.1:8000/api/destroy/"+id);
        }

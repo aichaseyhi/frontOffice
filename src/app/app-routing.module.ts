@@ -10,6 +10,9 @@ import { ChangePasswordRequestComponent } from './auth/change-password-request/c
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ProduitsComponent } from './secure/produits/produits.component';
 import { StoresComponent } from './secure/stores/stores.component';
+import { FournisseurComponent } from './secure/fournisseur/fournisseur.component';
+import { InstagrammersComponent } from './secure/instagrammers/instagrammers.component';
+import { ClientComponent } from './secure/client/client.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -20,6 +23,10 @@ const routes: Routes = [
     { path: 'admin', component: AdministrateurComponent },
     { path: 'product', component: ProduitsComponent },
     { path: 'store', component: StoresComponent },
+    { path: 'providerEx', component: FournisseurComponent },
+    { path: 'providerIn', component: InstagrammersComponent },
+    { path: 'client', component: ClientComponent },
+
   ]},
   {path: 'register', component: RegisterComponent},
   { path: 'reset-password', component: ChangePasswordRequestComponent },

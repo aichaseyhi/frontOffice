@@ -1,1 +1,133 @@
-<p>instagrammers works!</p>
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" style="margin-left: 10px;"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="providers" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+    [(selection)]="selectedUsers" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <h5 class="p-m-0">Manage Users</h5>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
+            
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+            <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+            <th pSortableColumn="birthday">Birthday <p-sortIcon field="birthday"></p-sortIcon></th>
+            <th pSortableColumn="sexe">Sexe <p-sortIcon field="sexe"></p-sortIcon></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-providers>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="provider"></p-tableCheckbox>
+            </td>
+            <td>{{providers.name}}</td>
+            <td>{{providers.email }}</td>
+            <td>{{providers.phone}}</td>
+            <td>{{providers.status}}</td>
+            <td>{{providers.birthday}}</td>
+            <td>{{providers.sexe}}</td>
+
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(providers)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(providers)" style="margin-left: 10px;"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            In total there are {{providers ? providers.length : 0 }} providers.
+        </div>
+    </ng-template>
+</p-table>
+</div>
+
+<p-dialog [(visible)]="providerDialog" [style]="{width: '450px'}" header="User Details" [modal]="true" styleClass="p-fluid">
+<ng-template pTemplate="content">
+    <div class="p-field">
+        <label for="name">Name</label>
+        <input type="text" pInputText id="name" [(ngModel)]="provider.name" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !provider.name">Name is required.</small>
+    </div>
+        <div class="p-field">
+            <label for="email">Email</label>
+            <input type="text" pInputText id="email" [(ngModel)]="provider.email" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.email">email is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="phone">Phone</label>
+            <input type="text" pInputText id="phone" [(ngModel)]="provider.phone" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.phone">phone is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="password">Password</label>
+            <input type="text" pInputText id="password" [(ngModel)]="provider.password" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.password">password is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="Sexe">Sexe</label>
+            <div class="radio-buttons">
+                <input type="radio" id="male" name="sexe" value="male">
+                <label for="male">MALE</label>
+                <span class="radio-spacing"></span>
+                <input type="radio" id="female" name="sexe" value="female">
+                <label for="female">FEMALE</label>
+              </div>
+            <small class="p-invalid" *ngIf="submitted && !provider.sexe">sexe is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="status">Status</label>
+            <select  class="text form-control" id="status" name="status">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <small class="p-invalid" *ngIf="submitted && !provider.status">status is required.</small>
+        </div>
+      
+        <div class="p-field">
+            <label for="role">Role</label>
+            <input type="text" pInputText id="role" [(ngModel)]="provider.role" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.role">role is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="nameboutique">Name Boutique</label>
+            <input type="text" pInputText id="nameboutique" [(ngModel)]="provider.nameboutique" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.nameboutique">nameboutique is required.</small>
+        </div>
+    
+    
+</ng-template>
+
+<ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+</ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        

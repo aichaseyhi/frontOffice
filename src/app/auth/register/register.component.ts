@@ -17,6 +17,10 @@ export class RegisterComponent implements OnInit {
   phone: string ="";
   email: string ="";
   password: string ="";
+  sexe: string="";
+  birthday: string="";
+  status: string="";
+  role: string="";
 
   constructor(
     private http: HttpClient,
@@ -30,7 +34,14 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      sexe: ['', Validators.required],
+      status: ['', Validators.required],
+      birthday: ['', Validators.required],
+      role: ['', Validators.required]
+
+
+
     });
   }
 
