@@ -79,7 +79,7 @@ export class ProduitsComponent implements OnInit {
         }
         else {
           this.productService.saveProduct(Data).subscribe((res) => {
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
              this.getAllProduct();
         this.productDialog = false;
           });

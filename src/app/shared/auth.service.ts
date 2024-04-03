@@ -10,11 +10,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   resetPassword(data: any) {
     return this.http.post(
-      'http://127.0.0.1:8000/api/change-password',
+      'http://127.0.0.1:8000/api/users/change-password',
       data
     );
   }
   sendResetPasswordLink(data: any) {
-    return this.http.post('http://127.0.0.1:8000/api/reset-password-request', data)
+    return this.http.post('http://127.0.0.1:8000/api/users/reset-password-request', data)
 }
 }

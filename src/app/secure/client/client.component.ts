@@ -63,8 +63,9 @@ export class ClientComponent implements OnInit {
           phone: this.client.phone,
           email: this.client.email,
           password:this.client.password,
-          sexe:this.client.sexe,
           status:this.client.status,
+         // birthday:this.client.birthday,
+          sexe:this.client.sexe,
           role:this.client.role
         };
   
@@ -75,7 +76,7 @@ export class ClientComponent implements OnInit {
         
         this.userService.updateUser(Data, this.client.id).subscribe((res) => {
               this.messageService.add({severity: 'success',summary: 'Successful',
-                detail: 'provider Updated',
+                detail: 'Client Updated',
                 life: 3000,
               });
               this.getUsersByRole();

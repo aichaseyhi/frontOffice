@@ -107,6 +107,12 @@
             </select>
             <small class="p-invalid" *ngIf="submitted && !provider.status">status is required.</small>
         </div>
+
+        <div class="p-field">
+            <label for="birthday">Birthday</label>
+            <input type="date" pInputText id="role" [(ngModel)]="provider.birthday" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !provider.birthday">birthday is required.</small>
+        </div>
       
         <div class="p-field">
             <label for="role">Role</label>

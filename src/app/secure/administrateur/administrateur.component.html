@@ -18,7 +18,7 @@
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
         <div class="p-d-flex p-ai-center p-jc-between">
-            <h5 class="p-m-0">Manage Users</h5>
+            <h5 class="p-m-0">Manage Administrators</h5>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
@@ -34,7 +34,6 @@
             <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-            <th pSortableColumn="birthday">Birthday <p-sortIcon field="birthday"></p-sortIcon></th>
             <th pSortableColumn="sexe">Sexe <p-sortIcon field="sexe"></p-sortIcon></th>
             <th></th>
         </tr>
@@ -48,7 +47,6 @@
             <td>{{users.email }}</td>
             <td>{{users.phone}}</td>
             <td>{{users.status}}</td>
-            <td>{{users.birthday}}</td>
             <td>{{users.sexe}}</td>
 
             <td>
@@ -88,7 +86,7 @@
             <small class="p-invalid" *ngIf="submitted && !user.password">password is required.</small>
         </div>
         <div class="p-field">
-            <label for="Sexe">Sexe</label>
+            <label for="sexe">Sexe</label>
             <div class="radio-buttons">
                 <input type="radio" id="male" name="sexe" value="male">
                 <label for="male">MALE</label>
@@ -112,6 +110,7 @@
             <input type="text" pInputText id="role" [(ngModel)]="user.role" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !user.role">role is required.</small>
         </div>
+       
 
     
 </ng-template>

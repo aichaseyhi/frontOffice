@@ -5,7 +5,7 @@ export interface ProviderInterne {
     phone?:string;
     password?:string;
     status?:string;
-    birthday?:string;
+    birthday?:Date;
     sexe?:string;
     nameboutique?:string;
 

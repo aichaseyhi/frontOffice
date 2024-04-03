@@ -109,11 +109,11 @@
         <div class="p-field">
             <label for="role">Role</label>
             <input type="text" pInputText id="role" [(ngModel)]="client.role" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !client.status">status is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !client.role">role is required.</small>
         </div>
         <div class="p-field">
             <label for="birthday">Birthday</label>
-            <input type="date" pInputText id="role" [(ngModel)]="client.birthday" required autofocus />
+            <input type="date" pInputText id="birthday" [(ngModel)]="client.birthday" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !client.birthday">birthday is required.</small>
         </div>
 

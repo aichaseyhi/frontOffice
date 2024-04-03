@@ -67,7 +67,7 @@ export class AdministrateurComponent implements OnInit {
             sexe: this.user.sexe,
             status: this.user.status,
             role:this.user.role,
-            birthday:this.user.birthday
+           // birthday:this.user.birthday
           };
     
       console.log("user", this.user);
@@ -88,8 +88,8 @@ export class AdministrateurComponent implements OnInit {
         }
         else {
           this.userService.saveUser(Data).subscribe((res) => {
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
-             this.getUsersByRole();
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
+            this.getUsersByRole();
         this.userDialog = false;
           });
          

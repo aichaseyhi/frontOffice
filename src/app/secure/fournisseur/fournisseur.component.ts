@@ -47,7 +47,7 @@ export class FournisseurComponent implements OnInit {
   }
   getUsersByRole(){
     this.userService.getUsersByRole('provider-extern').subscribe((resultData: any) => {this.providers = resultData;
-    console.log(this.providers);}
+       console.log(this.providers);}
     );
   }
   editUser(provider: ProviderExterne) {
@@ -85,11 +85,11 @@ export class FournisseurComponent implements OnInit {
             
           );
       }
-      else {
+     else {
         this.userService.saveUser(Data).subscribe((res) => {
           this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Created', life: 3000});
-           this.getUsersByRole();
-      this.providerDialog = false;
+          this.getUsersByRole();
+          this.providerDialog = false;
         });
        
     }
@@ -114,7 +114,7 @@ export class FournisseurComponent implements OnInit {
               console.log(res);
               this.getAllUser();
           })
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Deleted', life: 3000});
             
         }
     });
@@ -128,7 +128,7 @@ export class FournisseurComponent implements OnInit {
           accept: () => {
               this.providers = this.providers.filter(val => !this.selectedUsers.includes(val));
               //this.selectedProducts = null;
-              this.messageService.add({severity:'success', summary: 'Successful', detail: 'Users Deleted', life: 3000});
+              this.messageService.add({severity:'success', summary: 'Successful', detail: 'Providers Deleted', life: 3000});
           }
       });
   }

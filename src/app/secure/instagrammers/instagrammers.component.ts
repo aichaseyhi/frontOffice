@@ -88,7 +88,7 @@ export class InstagrammersComponent implements OnInit {
       }
       else {
         this.userService.saveUser(Data).subscribe((res) => {
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Created', life: 3000});
            this.getUsersByRole();
       this.providerDialog = false;
         });
@@ -115,7 +115,7 @@ export class InstagrammersComponent implements OnInit {
               console.log(res);
               this.getAllUser();
           })
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Deleted', life: 3000});
             
         }
     });
@@ -123,13 +123,13 @@ export class InstagrammersComponent implements OnInit {
 
   deleteSelectedUsers() {
       this.confirmationService.confirm({
-          message: 'Are you sure you want to delete the selected users?',
+          message: 'Are you sure you want to delete the selected providers?',
           header: 'Confirm',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
               this.providers = this.providers.filter(val => !this.selectedUsers.includes(val));
               //this.selectedProducts = null;
-              this.messageService.add({severity:'success', summary: 'Successful', detail: 'Users Deleted', life: 3000});
+              this.messageService.add({severity:'success', summary: 'Successful', detail: 'Providers Deleted', life: 3000});
           }
       });
   }
