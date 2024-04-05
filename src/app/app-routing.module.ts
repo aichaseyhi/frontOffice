@@ -26,6 +26,7 @@ const routes: Routes = [
     { path: 'providerEx', component: FournisseurComponent },
     { path: 'providerIn', component: InstagrammersComponent },
     { path: 'client', component: ClientComponent },
+    {path:'', redirectTo:'home', pathMatch:'full'},
 
   ]},
   {path: 'register', component: RegisterComponent},
