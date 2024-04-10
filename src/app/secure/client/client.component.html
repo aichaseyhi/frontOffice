@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-            
+
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -34,8 +34,6 @@
             <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-            <th pSortableColumn="birthday">Birthday <p-sortIcon field="birthday"></p-sortIcon></th>
-            <th pSortableColumn="sexe">Sexe <p-sortIcon field="sexe"></p-sortIcon></th>
             <th></th>
         </tr>
     </ng-template>
@@ -48,8 +46,6 @@
             <td>{{clients.email }}</td>
             <td>{{clients.phone}}</td>
             <td>{{clients.status}}</td>
-            <td>{{clients.birthday}}</td>
-            <td>{{clients.sexe}}</td>
 
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(clients)"></button>
@@ -87,17 +83,7 @@
             <input type="text" pInputText id="password" [(ngModel)]="client.password" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !client.password">password is required.</small>
         </div>
-        <div class="p-field">
-            <label for="Sexe">Sexe</label>
-            <div class="radio-buttons">
-                <input type="radio" id="male" name="sexe" value="male">
-                <label for="male">MALE</label>
-                <span class="radio-spacing"></span>
-                <input type="radio" id="female" name="sexe" value="female">
-                <label for="female">FEMALE</label>
-              </div>
-            <small class="p-invalid" *ngIf="submitted && !client.sexe">sexe is required.</small>
-        </div>
+
         <div class="p-field">
             <label for="status">Status</label>
             <select  class="text form-control" id="status" name="status">
@@ -111,13 +97,8 @@
             <input type="text" pInputText id="role" [(ngModel)]="client.role" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !client.role">role is required.</small>
         </div>
-        <div class="p-field">
-            <label for="birthday">Birthday</label>
-            <input type="date" pInputText id="birthday" [(ngModel)]="client.birthday" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !client.birthday">birthday is required.</small>
-        </div>
 
-    
+
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -127,4 +108,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-        

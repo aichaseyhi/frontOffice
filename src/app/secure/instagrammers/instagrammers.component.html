@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-            
+
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -88,39 +88,29 @@
             <small class="p-invalid" *ngIf="submitted && !provider.password">password is required.</small>
         </div>
 
-        <div class="p-field">
-            <label for="Sexe">Sexe</label>
-            <div class="radio-buttons">
-                <input type="radio" id="male" name="sexe" value="male">
-                <label for="male">MALE</label>
-                <span class="radio-spacing"></span>
-                <input type="radio" id="female" name="sexe" value="female">
-                <label for="female">FEMALE</label>
-              </div>
-            <small class="p-invalid" *ngIf="submitted && !provider.sexe">sexe is required.</small>
-        </div>
+
         <div class="p-field">
             <label for="status">Status</label>
             <select  class="text form-control" id="status" name="status">
               <option value="ACTIVE">ACTIVE</option>
               <option value="INACTIVE">INACTIVE</option>
+              <option value="PENDING">PENDING</option>
+
+
+
             </select>
             <small class="p-invalid" *ngIf="submitted && !provider.status">status is required.</small>
         </div>
-      
+
         <div class="p-field">
             <label for="role">Role</label>
             <input type="text" pInputText id="role" [(ngModel)]="provider.role" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !provider.role">role is required.</small>
         </div>
 
-        <div class="p-field">
-            <label for="nameboutique">Name Boutique</label>
-            <input type="text" pInputText id="nameboutique" [(ngModel)]="provider.nameboutique" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !provider.nameboutique">nameboutique is required.</small>
-        </div>
-    
-    
+
+
+
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -130,4 +120,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-        

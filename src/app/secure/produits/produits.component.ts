@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './product';
-import { ProduitService } from 'src/app/services/produit.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ProduitService } from 'src/app/services/produit.service';
+import { Product } from './product';
 
 @Component({
   selector: 'app-produits',
@@ -33,10 +33,10 @@ export class ProduitsComponent implements OnInit {
     }
 
     getAllProduct()
-    { 
-      
+    {
+
       this.productService.getAllProduct()
-    
+
       .subscribe((resultData: any)=>
       {
           // this.isResultLoaded = true;
@@ -52,20 +52,25 @@ export class ProduitsComponent implements OnInit {
     }
     saveProduct() {
       this.submitted = true;
-  
+
       const Data = {
-            name: this.product.name, 
+            name: this.product.name,
             description: this.product.description,
             quantity: this.product.quantity,
-            price:this.product.price,
+            priceSale: this.product.priceSale,
+            priceFav: this.product.priceFav,
+            priceMax: this.product.priceMax,
+            id: this.product.id,
+            Category:this.product.Category,
             image:this.product.image,
+            status:this.product.status,
           };
-    
+
       console.log("product", this.product);
-    
+
       if (this.product && this.product.name && this.product.name.trim()) {
         if (this.product.id) {
-          
+
           this.productService.updateProduct(Data, this.product.id).subscribe((res) => {
                 this.messageService.add({severity: 'success',summary: 'Successful',
                   detail: 'user Updated',
@@ -74,7 +79,7 @@ export class ProduitsComponent implements OnInit {
                 this.getAllProduct();
                 this.productDialog = false;
               },
-              
+
             );
         }
         else {
@@ -83,20 +88,20 @@ export class ProduitsComponent implements OnInit {
              this.getAllProduct();
         this.productDialog = false;
           });
-         
+
       }
-      
+
       this.products = [...this.products];
       this.productDialog = false;
      this.product = {};
-  
+
       }
     }
 
 
-    
+
     deleteProduct(product: Product) {
- 
+
       this.confirmationService.confirm({
           message: 'Are you sure you want to delete  ' + product.name +'?',
           header: 'Confirm',
@@ -107,7 +112,7 @@ export class ProduitsComponent implements OnInit {
                 this.getAllProduct();
             })
               this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-              
+
           }
       });
   }

@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-            
+
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -81,11 +81,37 @@
             <small class="p-invalid" *ngIf="submitted && !product.quantity">quantity is required.</small>
         </div>
         <div class="p-field">
-            <label for="price">Price</label>
-            <input type="text" pInputText id="price" [(ngModel)]="product.price" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.price">price is required.</small>
+            <label for="priceSale">Price Sale</label>
+            <input type="text" pInputText id="priceSale" [(ngModel)]="product.priceSale" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !product.priceSale">price Sale is required.</small>
         </div>
-    
+        <div class="p-field">
+          <label for="priceMax">price Max</label>
+          <input type="text" pInputText id="priceMax" [(ngModel)]="product.priceMax" required autofocus />
+          <small class="p-invalid" *ngIf="submitted && !product.priceMax>price is required.</small>
+      </div>
+      <div class="p-field">
+            <label for="priceFav">Price Fav</label>
+            <input type="text" pInputText id="priceFav" [(ngModel)]="product.priceFav" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !product.priceFav">price Fav is required.</small>
+        </div>
+        <div class="p-field">
+          <label for="Category">Category</label>
+          <input type="text" pInputText id="category" [(ngModel)]="product.Category" required autofocus />
+          <small class="p-invalid" *ngIf="submitted && !product.Category">Category is required.</small>
+
+      </div>
+      <div class="p-field">
+        <label for="status">status</label>
+        <input type="text" pInputText id="status" [(ngModel)]="product.status" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !product.status">Status is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="image">Image</label>
+      <input type="image" pInputText id="image" [(ngModel)]="product.image" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.image">At least one image is required.</small>
+  </div>
+
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -95,4 +121,3 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-        

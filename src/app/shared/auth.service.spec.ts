@@ -1,16 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { AuthService } from './auth.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
 
-describe('AuthService', () => {
-  let service: AuthService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  constructor(private http: HttpClient) {}
+  resetPassword(data: any) {
+    return this.http.post(
+      'http://127.0.0.1:8000/api/users/change-password',
+      data
+    );
+  }
+  sendResetPasswordLink(data: any) {
+    return this.http.post('http://127.0.0.1:8000/api/users/reset-password-request', data)
+}
+}

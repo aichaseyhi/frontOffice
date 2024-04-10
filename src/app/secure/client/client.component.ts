@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from './client';
-import { UserService } from 'src/app/services/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UserService } from 'src/app/services/user.service';
+import { Client } from './client';
 
 @Component({
   selector: 'app-client',
@@ -33,10 +33,10 @@ export class ClientComponent implements OnInit {
   }
 
   getAllUser()
-  { 
-    
+  {
+
     this.userService.getAllUser()
-  
+
     .subscribe((resultData: any)=>
     {
         // this.isResultLoaded = true;
@@ -59,21 +59,19 @@ export class ClientComponent implements OnInit {
     this.submitted = true;
 
     const Data = {
-          name: this.client.name, 
+          name: this.client.name,
           phone: this.client.phone,
           email: this.client.email,
           password:this.client.password,
           status:this.client.status,
-         // birthday:this.client.birthday,
-          sexe:this.client.sexe,
           role:this.client.role
         };
-  
+
     console.log("client", this.client);
-  
+
     if (this.client && this.client.name && this.client.name.trim()) {
       if (this.client.id) {
-        
+
         this.userService.updateUser(Data, this.client.id).subscribe((res) => {
               this.messageService.add({severity: 'success',summary: 'Successful',
                 detail: 'Client Updated',
@@ -82,7 +80,7 @@ export class ClientComponent implements OnInit {
               this.getUsersByRole();
               this.clientDialog = false;
             },
-            
+
           );
       }
       else {
@@ -91,9 +89,9 @@ export class ClientComponent implements OnInit {
            this.getUsersByRole();
       this.clientDialog = false;
         });
-       
+
     }
-    
+
     this.clients = [...this.clients];
     this.clientDialog = false;
    this.client = {};
@@ -102,7 +100,7 @@ export class ClientComponent implements OnInit {
   }
 
 
-  
+
   deleteUser(client: Client) {
 
     this.confirmationService.confirm({
@@ -115,7 +113,7 @@ export class ClientComponent implements OnInit {
               this.getAllUser();
           })
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'Client Deleted', life: 3000});
-            
+
         }
     });
 }

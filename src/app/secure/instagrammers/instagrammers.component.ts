@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProviderInterne } from './instagrammer';
-import { UserService } from 'src/app/services/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UserService } from 'src/app/services/user.service';
+import { ProviderInterne } from './instagrammer';
 
 @Component({
   selector: 'app-instagrammers',
@@ -33,10 +33,10 @@ export class InstagrammersComponent implements OnInit {
   }
 
   getAllUser()
-  { 
-    
+  {
+
     this.userService.getAllUser()
-  
+
     .subscribe((resultData: any)=>
     {
         // this.isResultLoaded = true;
@@ -59,22 +59,19 @@ export class InstagrammersComponent implements OnInit {
     this.submitted = true;
 
     const Data = {
-          name: this.provider.name, 
+          name: this.provider.name,
           phone: this.provider.phone,
           email: this.provider.email,
           password:this.provider.password,
-          sexe: this.provider.sexe,
           status: this.provider.status,
           role:this.provider.role,
-          birthday:this.provider.birthday,
-          nameboutique:this.provider.nameboutique,
         };
-  
+
     console.log("provider", this.provider);
-  
+
     if (this.provider && this.provider.name && this.provider.name.trim()) {
       if (this.provider.id) {
-        
+
         this.userService.updateUser(Data, this.provider.id).subscribe((res) => {
               this.messageService.add({severity: 'success',summary: 'Successful',
                 detail: 'provider Updated',
@@ -83,7 +80,7 @@ export class InstagrammersComponent implements OnInit {
               this.getUsersByRole();
               this.providerDialog = false;
             },
-            
+
           );
       }
       else {
@@ -92,9 +89,9 @@ export class InstagrammersComponent implements OnInit {
            this.getUsersByRole();
       this.providerDialog = false;
         });
-       
+
     }
-    
+
     this.providers = [...this.providers];
     this.providerDialog = false;
    this.provider = {};
@@ -103,7 +100,7 @@ export class InstagrammersComponent implements OnInit {
   }
 
 
-  
+
   deleteUser(provider: ProviderInterne) {
 
     this.confirmationService.confirm({
@@ -116,7 +113,7 @@ export class InstagrammersComponent implements OnInit {
               this.getAllUser();
           })
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'Provider Deleted', life: 3000});
-            
+
         }
     });
 }

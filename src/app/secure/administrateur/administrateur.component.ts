@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {   User } from './admin';
-import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
+import { User } from './admin';
 
 @Component({
   selector: 'app-administrateur',
@@ -34,10 +33,10 @@ export class AdministrateurComponent implements OnInit {
     }
 
     getAllUser()
-    { 
-      
+    {
+
       this.userService.getAllUser()
-    
+
       .subscribe((resultData: any)=>
       {
           // this.isResultLoaded = true;
@@ -58,23 +57,21 @@ export class AdministrateurComponent implements OnInit {
     }
     saveUser() {
       this.submitted = true;
-  
+
       const Data = {
-            name: this.user.name, 
+            name: this.user.name,
             phone: this.user.phone,
             email: this.user.email,
             password:this.user.password,
-            sexe: this.user.sexe,
             status: this.user.status,
             role:this.user.role,
-           // birthday:this.user.birthday
           };
-    
+
       console.log("user", this.user);
-    
+
       if (this.user && this.user.name && this.user.name.trim()) {
         if (this.user.id) {
-          
+
           this.userService.updateUser(Data, this.user.id).subscribe((res) => {
                 this.messageService.add({severity: 'success',summary: 'Successful',
                   detail: 'user Updated',
@@ -83,7 +80,7 @@ export class AdministrateurComponent implements OnInit {
                 this.getUsersByRole();
                 this.userDialog = false;
               },
-              
+
             );
         }
         else {
@@ -92,20 +89,20 @@ export class AdministrateurComponent implements OnInit {
             this.getUsersByRole();
         this.userDialog = false;
           });
-         
+
       }
-      
+
       this.users = [...this.users];
       this.userDialog = false;
      this.user = {};
-  
+
       }
     }
 
 
-    
+
     deleteUser(user: User) {
- 
+
       this.confirmationService.confirm({
           message: 'Are you sure you want to delete  ' + user.name +'?',
           header: 'Confirm',
@@ -116,7 +113,7 @@ export class AdministrateurComponent implements OnInit {
                 this.getAllUser();
             })
               this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted', life: 3000});
-              
+
           }
       });
   }

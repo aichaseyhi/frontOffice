@@ -1,5 +1,5 @@
 export interface Store {
-    id?:string;
-    name?:string;
-   
+  id?:string;
+  quantity?:Int16Array;
+
 }
