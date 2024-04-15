@@ -26,7 +26,6 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { ChangePasswordRequestComponent } from './auth/change-password-request/change-password-request.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -42,7 +41,7 @@ import { SecureModule } from './secure/secure.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    //AppComponent,
     DashbordComponent,
     LoginComponent,
     RegisterComponent,
@@ -80,12 +79,12 @@ import { SecureModule } from './secure/secure.module';
     ConfirmDialogModule,
     InputTextareaModule,
     InputTextModule,
-    SecureModule,
+    //SecureModule,
     StyleClassModule,
     PanelMenuModule,
     MenuModule
   ],
   providers: [MessageService, ConfirmationService],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }

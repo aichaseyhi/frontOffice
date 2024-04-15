@@ -88,7 +88,8 @@
         <div class="p-field">
           <label for="priceMax">price Max</label>
           <input type="text" pInputText id="priceMax" [(ngModel)]="product.priceMax" required autofocus />
-          <small class="p-invalid" *ngIf="submitted && !product.priceMax>price is required.</small>
+          <small class="p-invalid" *ngIf="submitted && !product.priceMax"> price is required.
+          </small>
       </div>
       <div class="p-field">
             <label for="priceFav">Price Fav</label>
