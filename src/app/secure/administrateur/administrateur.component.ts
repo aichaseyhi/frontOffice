@@ -23,7 +23,7 @@ export class AdministrateurComponent implements OnInit {
     constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
     ngOnInit() {
-        this.getUsersByRole();
+        this.getAllUser();
     }
 
     openNew() {
@@ -45,11 +45,6 @@ export class AdministrateurComponent implements OnInit {
            console.log(this.users);
       });
     }
-    getUsersByRole(){
-      this.userService.getUsersByRole('admin').subscribe((resultData: any) => {this.users = resultData;
-      console.log(this.users);}
-      );
-    }
     editUser(user: User) {
         this.user = {...user};
         console.log(user)
@@ -59,12 +54,12 @@ export class AdministrateurComponent implements OnInit {
       this.submitted = true;
 
       const Data = {
-            name: this.user.name,
-            phone: this.user.phone,
-            email: this.user.email,
-            password:this.user.password,
-            status: this.user.status,
-            role:this.user.role,
+        name: this.user.name,
+        phone: this.user.phone,
+        email: this.user.email,
+        password:this.user.password,
+        status: this.user.status,
+        role:this.user.role,
           };
 
       console.log("user", this.user);
@@ -77,7 +72,7 @@ export class AdministrateurComponent implements OnInit {
                   detail: 'user Updated',
                   life: 3000,
                 });
-                this.getUsersByRole();
+                this.getAllUser();
                 this.userDialog = false;
               },
 
@@ -85,8 +80,8 @@ export class AdministrateurComponent implements OnInit {
         }
         else {
           this.userService.saveUser(Data).subscribe((res) => {
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
-            this.getUsersByRole();
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Created', life: 3000});
+             this.getAllUser();
         this.userDialog = false;
           });
 

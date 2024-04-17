@@ -13,7 +13,7 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','description','quantity','price']"
     [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
@@ -21,8 +21,8 @@
             <h5 class="p-m-0">Manage Products</h5>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-
+                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
+            </span>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -35,23 +35,22 @@
             <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
             <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
             <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
-
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-products>
+    <ng-template pTemplate="body" let-product>
         <tr>
             <td>
                 <p-tableCheckbox [value]="product"></p-tableCheckbox>
             </td>
-            <td>{{products.name}}</td>
-            <td>{{products.description }}</td>
-            <td>{{products.quantity}}</td>
-            <td>{{products.price}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}</td>
             <td></td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(products)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(products)" style="margin-left: 10px;"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)" style="margin-left: 10px;"></button>
             </td>
         </tr>
     </ng-template>
@@ -81,38 +80,10 @@
             <small class="p-invalid" *ngIf="submitted && !product.quantity">quantity is required.</small>
         </div>
         <div class="p-field">
-            <label for="priceSale">Price Sale</label>
-            <input type="text" pInputText id="priceSale" [(ngModel)]="product.priceSale" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.priceSale">price Sale is required.</small>
+            <label for="price">Price</label>
+            <input type="text" pInputText id="price" [(ngModel)]="product.price" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !product.price">price is required.</small>
         </div>
-        <div class="p-field">
-          <label for="priceMax">price Max</label>
-          <input type="text" pInputText id="priceMax" [(ngModel)]="product.priceMax" required autofocus />
-          <small class="p-invalid" *ngIf="submitted && !product.priceMax"> price is required.
-          </small>
-      </div>
-      <div class="p-field">
-            <label for="priceFav">Price Fav</label>
-            <input type="text" pInputText id="priceFav" [(ngModel)]="product.priceFav" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.priceFav">price Fav is required.</small>
-        </div>
-        <div class="p-field">
-          <label for="Category">Category</label>
-          <input type="text" pInputText id="category" [(ngModel)]="product.Category" required autofocus />
-          <small class="p-invalid" *ngIf="submitted && !product.Category">Category is required.</small>
-
-      </div>
-      <div class="p-field">
-        <label for="status">status</label>
-        <input type="text" pInputText id="status" [(ngModel)]="product.status" required autofocus />
-        <small class="p-invalid" *ngIf="submitted && !product.status">Status is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="image">Image</label>
-      <input type="image" pInputText id="image" [(ngModel)]="product.image" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !product.image">At least one image is required.</small>
-  </div>
-
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -122,3 +93,5 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<div class="text-center text-muted mt-4">Created by Webify Technology</div>

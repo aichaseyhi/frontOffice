@@ -9,9 +9,7 @@ import { HomeComponent } from './components/dash/home/home.component';
 import { ChangePasswordRequestComponent } from './auth/change-password-request/change-password-request.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ProduitsComponent } from './secure/produits/produits.component';
-import { FournisseurComponent } from './secure/fournisseur/fournisseur.component';
-import { InstagrammersComponent } from './secure/instagrammers/instagrammers.component';
-import { ClientComponent } from './secure/client/client.component';
+import { StoresComponent } from './secure/stores/stores.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login', pathMatch:'full'},
@@ -21,11 +19,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'admin', component: AdministrateurComponent },
     { path: 'product', component: ProduitsComponent },
-    { path: 'providerEx', component: FournisseurComponent },
-    { path: 'providerIn', component: InstagrammersComponent },
-    { path: 'client', component: ClientComponent },
-    {path:'', redirectTo:'home', pathMatch:'full'},
-
+    { path: 'store', component: StoresComponent },
   ]},
   {path: 'register', component: RegisterComponent},
   { path: 'reset-password', component: ChangePasswordRequestComponent },

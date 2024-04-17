@@ -18,27 +18,21 @@ export class UserService {
     getAllUser():Observable<any>
     { 
       
-     return this.http.get("http://127.0.0.1:8000/api/users/")
-    }
-
-    getUsersByRole(Role:any):Observable<any>
-    { 
-      
-     return this.http.get("http://127.0.0.1:8000/api/users/user/"+Role)
+     return this.http.get("http://127.0.0.1:8000/api/users")
     }
 
     deleteUser(id:any){
-        return  this.http.delete("http://127.0.0.1:8000/api/users/destroy/"+id);
+        return  this.http.delete("http://127.0.0.1:8000/api/destroy/"+id);
        }
        
     updateUser(data:any , id:any){
          console.log("data",data);
        
-         return this.http.put("http://127.0.0.1:8000/api/users/update/"+id,data);
+         return this.http.put("http://127.0.0.1:8000/api/update/"+id,data);
      
        } 
     saveUser(data:any):Observable<any>{
-        return this.http.post("http://127.0.0.1:8000/api/users/save", data);
+        return this.http.post("http://127.0.0.1:8000/api/save", data);
      }
 
 }

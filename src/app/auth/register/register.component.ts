@@ -10,17 +10,7 @@ import { AuthAdminService } from 'src/app/services/auth-admin.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   registerForm!: FormGroup;
-
-  name: string ="";
-  phone: string ="";
-  email: string ="";
-  password: string ="";
-  sexe: string="";
-  birthday: string="";
-  status: string="";
-  role: string="";
 
   constructor(
     private http: HttpClient,
@@ -35,30 +25,17 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      sexe: ['', Validators.required],
-      status: ['', Validators.required],
-      birthday: ['', Validators.required],
-      role: ['', Validators.required]
-
-
-
+      role: ['', Validators.required] // Add role field to the form
     });
   }
 
-  register()
-  {
-    if(this.registerForm.valid){
-      this.authService.register(this.registerForm.value).subscribe((res:any)=>{
-        
-          
+  register(): void {
+    if (this.registerForm.valid) {
+      this.authService.register(this.registerForm.value).subscribe((res: any) => {
         console.log(res);
         alert("Registered Successfully")
         this.router.navigate(['/login']);
-        
-         
-       } )
-    } 
-   
+      });
+    }
   }
-
 }

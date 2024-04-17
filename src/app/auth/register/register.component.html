@@ -1,90 +1,82 @@
-<section class="h-100 gradient-form" style="background-color: #eee;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-xl-10">
-          <div class="card rounded-3 text-black">
-            <div class="row g-0">
-              <div class="col-lg-6">
-                <div class="card-body p-md-5 mx-md-4">
-  
-                  <div class="text-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                      style="width: 185px;" alt="logo">
-                    <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
-                  </div>
-  
-                  <form [formGroup]="registerForm" >
-                    <p>Please login to your account</p>
-  
-                    <div class="form-outline mb-4">
-                      <input formControlName="email" type="email" id="form2Example11" class="form-control"
-                        placeholder="Phone number or email address" />
-                      <label class="form-label" for="form2Example11">Username</label>
-                    </div>
-                    <div class="form-outline mb-4">
-                        <input formControlName="name" type="text" id="form2Example11" class="form-control"
-                          placeholder="Name" />
-                        <label class="form-label" for="form2Example11">Name</label>
-                      </div>
-                      <div class="form-outline mb-4">
-                        <input formControlName="phone" type="number" id="form2Example11" class="form-control"
-                          placeholder="Phone" />
-                        <label class="form-label" for="form2Example11">Phone</label>
-                      </div>
-  
-                    <div class="form-outline mb-4">
-                      <input formControlName="password" type="password" id="form2Example22" class="form-control" />
-                      <label class="form-label" for="form2Example22">Password</label>
-                    </div>
-                    <div class="form-outline mb-4">
-                      <input formControlName="role" type="text" id="form2Example11" class="form-control"
-                        placeholder="Name" />
-                      <label class="form-label" for="form2Example11">Role</label>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                    <div class="form-outline mb-4">
-                      <input formControlName="birthday" type="text" id="form2Example11" class="form-control"
-                        placeholder="YYYY-MM-DD" />
-                      <label class="form-label" for="form2Example11">Birthday</label>
-                    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    .gradient-form {
+      min-height: 100vh;
+    }
+    .card {
+      border: none;
+    }
+    .form-control {
+      border-radius: 10px;
+    }
+    .btn-primary {
+      border-radius: 10px;
+    }
+  </style>
+</head>
 
-                    <div class="form-outline mb-4">
-                      <label class="form-label" for="form2Example11">Sexe</label>
-                      <div class="radio-buttons">
-                        <input type="radio" id="male" name="sexe" value="male">
-                        <label for="male">MALE</label>
-                        <span class="radio-spacing"></span>
-                        <input type="radio" id="female" name="sexe" value="female">
-                        <label for="female">FEMALE</label>
-                      </div>
-                    </div>
-                    <div class="form-outline mb-4">
-                      <label class="form-label" for="form2Example11">Status</label>
-                      <select formControlName="status" class="text form-control" id="status" name="status">
-                        <option value="ACTIVE">ACTIVE</option>
-                        <option value="INACTIVE">INACTIVE</option>
-                      </select>
-                    </div>
-  
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-primary btn-lg btn-block fa-lg gradient-custom-2 mb-3" type="button" (click)="register()">Register</button>
-                      
-                    </div>
-  
-                   
-  
-                  </form>
-  
-                </div>
+<body>
+
+  <section class="gradient-form">
+    <div class="container py-5">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body p-md-5">
+              <div class="text-center mb-4">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" style="width: 185px;" alt="logo">
+                <h4 class="mt-4 mb-3 fw-bold" style="font-size: 24px;">Registration</h4>
               </div>
-              <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                  
+
+              <form [formGroup]="registerForm">
+                <div class="mb-4">
+                  <label class="form-label" for="name">Name</label>
+                  <input formControlName="name" type="text" id="name" class="form-control" placeholder="Name">
                 </div>
-              </div>
+
+                <div class="mb-4">
+                  <label class="form-label" for="email">Email</label>
+                  <input formControlName="email" type="email" id="email" class="form-control" placeholder="Email address">
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label" for="phone">Phone</label>
+                  <input formControlName="phone" type="text" id="phone" class="form-control" placeholder="Phone number">
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label" for="role">Role</label>
+                  <select formControlName="role" class="form-select" aria-label="Select role">
+                    <option value="" selected>Select Role</option>
+                    <option value="Fournisseur">Fournisseur</option>
+                    <option value="Instagrammeur">Instagrammeur</option>
+                  </select>
+                </div>
+
+                <div class="mb-4">
+                  <label class="form-label" for="password">Password</label>
+                  <input formControlName="password" type="password" id="password" class="form-control" placeholder="Password">
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" type="button" (click)="register()">Register</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <footer class="text-center text-muted py-4 fixed-bottom bg-light">Created by Webify Technology</footer>
+
+
+</body>
+
+</html>
