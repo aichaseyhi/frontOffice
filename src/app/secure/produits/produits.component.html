@@ -86,8 +86,10 @@
     </div>
     <div class="p-field">
       <label for="echantillon">Echantillon</label>
-      <input type="text" pInputText id="echantillon" [(ngModel)]="product.echantillon" required autofocus />
-      <small class="p-invalid" *ngIf="submitted && !product.echantillon">echantillon is required.</small>
+      <select pInputText id="echantillon" [(ngModel)]="selectedEchantillon" required>
+        <option *ngFor="let echantillon of echantillonOptions" [value]="echantillon">{{ echantillon }}</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !selectedEchantillon">Echantillon is required.</small>
     </div>
     <div class="p-field">
       <label for="quantity">Quantity</label>
@@ -138,14 +140,14 @@
     <div class="p-field">
       <label for="color">Color</label>
       <select pInputText id="color" [(ngModel)]="selectedColor" required>
-        <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+        <option *ngFor="let color of colorOptions" [value]="color">{{ color }}</option>
       </select>
       <small class="p-invalid" *ngIf="submitted && !selectedColor">Color is required.</small>
     </div>
     <div class="p-field">
       <label for="size">Size</label>
       <select pInputText id="size" [(ngModel)]="selectedSize" required>
-        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+        <option *ngFor="let size of sizeOptions" [value]="size">{{ size }}</option>
       </select>
       <small class="p-invalid" *ngIf="submitted && !selectedSize">Size is required.</small>
     </div>

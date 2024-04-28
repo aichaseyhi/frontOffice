@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -85,7 +86,8 @@ import { SecureModule } from './secure/secure.module';
     SecureModule,
     StyleClassModule,
     PanelMenuModule,
-    MenuModule
+    MenuModule,
+    NgApexchartsModule,
   ],
   providers: [MessageService, ConfirmationService,
     {

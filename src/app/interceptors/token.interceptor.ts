@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    // Add authorization header with JWT token if available
+    //
     const token = localStorage.getItem('token');
 
     if (token) {

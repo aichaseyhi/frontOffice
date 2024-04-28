@@ -28,9 +28,9 @@ import { ChatComponent } from './chat/chat.component';
 import { ClientComponent } from './client/client.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { InstagrammersComponent } from './instagrammers/instagrammers.component';
+import { OrdersComponent } from './orders/orders/orders.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { StoresComponent } from './stores/stores.component';
-import { OrdersComponent } from './orders/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,7 @@ import { OrdersComponent } from './orders/orders/orders.component';
     ConfirmDialogModule,
     InputTextareaModule,
     BrowserAnimationsModule,
-    RouterModule, // Include RouterModule in imports
+    RouterModule,
   ],
   providers: [MessageService, ConfirmationService],
 })

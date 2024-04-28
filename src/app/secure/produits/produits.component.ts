@@ -15,10 +15,13 @@ export class ProduitsComponent implements OnInit {
   product: Product = {};
   selectedProducts: Product[] = [];
   submitted: boolean = false;
-  colors: string[] = ['Red', 'Blue', 'Green', 'Yellow', 'Purple'];
-  selectedColor: string | undefined;
-  sizes: string[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-  selectedSize: string | undefined;
+  selectedColor: string = '';
+  colorOptions: string[] = ['Red', 'Blue', 'Green', 'Yellow', 'Purple'];
+  sizeOptions: string[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+  selectedSize: string = '';
+  selectedEchantillon: string = '';
+  echantillonOptions: string[] = ['FREE', 'PAID', 'REFUNDED'];
+
   constructor(private productService: ProduitService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
