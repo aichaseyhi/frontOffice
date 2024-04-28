@@ -1,0 +1,44 @@
+.dashboard {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.kpi-container {
+  flex: 0 0 300px; /* Fixed width for KPI container */
+}
+
+.kpi {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.kpi h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.kpi p {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}

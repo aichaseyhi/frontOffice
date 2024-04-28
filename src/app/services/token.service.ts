@@ -7,20 +7,23 @@ export class TokenService {
 
   constructor() { }
 
-  storeToken(tokenValue: string){
-    localStorage.setItem('token', tokenValue)
-  }
-  storeRefreshToken(tokenValue: string){
-    localStorage.setItem('refreshToken', tokenValue)
+  storeToken(tokenValue: string) {
+    localStorage.setItem('token', tokenValue);
   }
 
-  getToken(){
-    return localStorage.getItem('token')
+  storeRefreshToken(tokenValue: string) {
+    localStorage.setItem('refreshToken', tokenValue);
   }
-  getRefreshToken(){
-    return localStorage.getItem('refreshToken')
+
+  getToken() {
+    return localStorage.getItem('token');
   }
-  clearToken(){
+
+  getRefreshToken() {
+    return localStorage.getItem('refreshToken');
+  }
+
+  clearToken() {
     localStorage.clear();
   }
 }

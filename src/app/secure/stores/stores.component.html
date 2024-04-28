@@ -22,7 +22,7 @@
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-            
+
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -31,7 +31,7 @@
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
             <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-           
+
 
             <th></th>
         </tr>
@@ -42,7 +42,7 @@
                 <p-tableCheckbox [value]="store"></p-tableCheckbox>
             </td>
             <td>{{stores.name}}</td>
-           
+
             <td></td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editStore(stores)"></button>
@@ -57,6 +57,13 @@
     </ng-template>
 </p-table>
 </div>
+<p-dialog [(visible)]="storeDialog" [style]="{width: '450px'}" header="Store Details" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+      <div class="p-field">
+          <label for="matiere_id">Matiére Id</label>
+          <input type="text" pInputText id="matiere_id" [(ngModel)]="store.matiere_id" required autofocus />
+          <small class="p-invalid" *ngIf="submitted && !store.matiere_id">Matiére Id is required.</small>
+      </div>
 
 <p-dialog [(visible)]="storeDialog" [style]="{width: '450px'}" header="Store Details" [modal]="true" styleClass="p-fluid">
 <ng-template pTemplate="content">
@@ -65,8 +72,8 @@
         <input type="text" pInputText id="name" [(ngModel)]="store.name" required autofocus />
         <small class="p-invalid" *ngIf="submitted && !store.name">Name is required.</small>
     </div>
-      
-    
+
+
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -76,4 +83,4 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-        
+

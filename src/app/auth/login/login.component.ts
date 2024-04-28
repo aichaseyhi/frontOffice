@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,11 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  email: string ="";
-  password: string ="";
-
   constructor(
-    private http: HttpClient,
     private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthAdminService,
@@ -32,19 +27,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(){
-    if(this.loginForm.valid){
-      this.authService.login(this.loginForm.value).subscribe((res:any)=>{
-        if(res.status===200 && res.body.success===true){
-          this.tokenService.storeToken(res.body.token)
-          this.router.navigate(["/dashbord"])
+  login() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe((res: any) => {
+        // console.log('_______',res)
+        if (res.status === 200 ) {
+          this.tokenService.storeToken(res.body.token);
+          this.router.navigate(['dashboard/home']); // Adjust the route as per your application
         }
         console.log(res);
-      },(error:any)=>{
-        alert("Information incorrect!!!")
-        console.error(error)
-      })
-    }  
-
-}
+      }, (error: any) => {
+        alert('Incorrect information!');
+        console.error(error);
+      });
+    }
+  }
 }

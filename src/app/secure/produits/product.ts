@@ -1,7 +1,20 @@
 export interface Product {
-    id?:string;
-    name?:string;
-    description?:string;
-    quantity?:number;
-    price?:number;
-    images?: string[];}
+  id?: number;
+  name?: string;
+  description?: string;
+  quantity?: number;
+  priceSale?: number;
+  priceFav?: number;
+  priceMax?: number;
+  category?: string;
+  image?: string;
+  status?: string;
+  reference?: string;
+  echantillon?: string;
+  brand?: string;
+  color?: string;
+  size?: string;
+  subcategory?: string;
+
+
+}

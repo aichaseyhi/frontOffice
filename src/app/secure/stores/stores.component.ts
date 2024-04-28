@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from './store';
-import { StoreService } from 'src/app/services/store.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { StoreService } from 'src/app/services/store.service';
+import { Store } from './store';
 
 @Component({
   selector: 'app-stores',
@@ -13,6 +13,8 @@ export class StoresComponent implements OnInit {
   storeDialog: boolean = false;
 
   stores: any[] = [];
+  matiere_id: number | undefined;
+
 
     store: any ={};
 
@@ -33,10 +35,10 @@ export class StoresComponent implements OnInit {
     }
 
     getAllStore()
-    { 
-      
+    {
+
       this.storeService.getAllStore()
-    
+
       .subscribe((resultData: any)=>
       {
           // this.isResultLoaded = true;
@@ -52,18 +54,19 @@ export class StoresComponent implements OnInit {
     }
     saveStore() {
       this.submitted = true;
-  
+
       const Data = {
-            name: this.store.name, 
-           
+        id: this.store.matiere_id,
+        name: this.store.name,
+
           };
-    
+
       console.log("store", this.store);
-    
+
       if (this.store && this.store.name && this.store.name.trim()) {
-        if (this.store.id) {
-          
-          this.storeService.updateStore(Data, this.store.id).subscribe((res) => {
+        if (this.store.matiere_id) {
+
+          this.storeService.updateStore(Data, this.store.matiere_id).subscribe((res) => {
                 this.messageService.add({severity: 'success',summary: 'Successful',
                   detail: 'store Updated',
                   life: 3000,
@@ -71,7 +74,7 @@ export class StoresComponent implements OnInit {
                 this.getAllStore();
                 this.storeDialog = false;
               },
-              
+
             );
         }
         else {
@@ -80,31 +83,31 @@ export class StoresComponent implements OnInit {
              this.getAllStore();
         this.storeDialog = false;
           });
-         
+
       }
-      
+
       this.stores = [...this.stores];
       this.storeDialog = false;
      this.store = {};
-  
+
       }
     }
 
 
-    
+
     deleteStore(store: Store) {
- 
+
       this.confirmationService.confirm({
           message: 'Are you sure you want to delete  ' + store.name +'?',
           header: 'Confirm',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-            this.storeService.deleteStore(store.id).subscribe((res:any) =>{
+            this.storeService.deleteStore(store.matiere_id).subscribe((res:any) =>{
                 console.log(res);
                 this.getAllStore();
             })
               this.messageService.add({severity:'success', summary: 'Successful', detail: 'Store Deleted', life: 3000});
-              
+
           }
       });
   }

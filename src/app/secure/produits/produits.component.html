@@ -1,97 +1,158 @@
 <p-toast></p-toast>
 
-<div class="card">
-    <p-toolbar styleClass="p-mb-4">
-        <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
-        </ng-template>
+<div class="card p-4">
+  <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+          <button pButton pRipple label="New" icon="pi pi-plus" class="p-button p-button-success p-mr-2" (click)="openNew()"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+      </ng-template>
 
-        <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" style="margin-left: 10px;"></button>
-        </ng-template>
-    </p-toolbar>
+      <ng-template pTemplate="right">
+          <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
+          <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button p-button-help"></button>
+      </ng-template>
+  </p-toolbar>
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','description','quantity','price']"
-    [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-    <ng-template pTemplate="caption">
-        <div class="p-d-flex p-ai-center p-jc-between">
-            <h5 class="p-m-0">Manage Products</h5>
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
-            </span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-        <tr>
-            <th style="width: 3rem">
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-            </th>
-            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-            <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
-            <th pSortableColumn="quantity">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
-            <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-            <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
-            <th></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-        <tr>
-            <td>
-                <p-tableCheckbox [value]="product"></p-tableCheckbox>
-            </td>
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.quantity}}</td>
-            <td>{{product.price}}</td>
-            <td></td>
-            <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)" style="margin-left: 10px;"></button>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-        <div class="p-d-flex p-ai-center p-jc-between">
-            In total there are {{products ? products.length : 0 }} products.
-        </div>
-    </ng-template>
+  <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['reference','name','category','image','status','echantillon']"
+  [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          <h5 class="p-m-0">Manage Products</h5>
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
+          </span>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="reference">Reference <p-sortIcon field="reference"></p-sortIcon></th>
+          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th>Image</th>
+          <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+          <th pSortableColumn="echantillon">Echantillon <p-sortIcon field="echantillon"></p-sortIcon></th>
+          <th></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-products>
+      <tr>
+          <td>
+              <p-tableCheckbox [value]="product"></p-tableCheckbox>
+          </td>
+          <td>{{products.reference}}</td>
+          <td>{{products.name}}</td>
+          <td>{{products.image}}</td>
+          <td>{{products.category}}</td>
+          <td>{{products.status}}</td>
+          <td>{{products.echantillon}}</td>
+          <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button p-button p-button-success p-mr-2" (click)="editProduct(products)"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button p-button p-button-warning" (click)="deleteProduct(products)" style="margin-left: 10px;"></button>
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          In total there are {{products ? products.length : 0 }} users.
+      </div>
+  </ng-template>
 </p-table>
 </div>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
-<ng-template pTemplate="content">
-    <div class="p-field">
-        <label for="name">Name</label>
-        <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-        <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
-    </div>
-        <div class="p-field">
-            <label for="description">Description</label>
-            <input type="text" pInputText id="description" [(ngModel)]="product.description" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.description">description is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="quantity">Quantity</label>
-            <input type="text" pInputText id="quantity" [(ngModel)]="product.quantity" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.quantity">quantity is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="price">Price</label>
-            <input type="text" pInputText id="price" [(ngModel)]="product.price" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !product.price">price is required.</small>
-        </div>
-</ng-template>
 
-<ng-template pTemplate="footer">
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="name">Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.name">Name is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="description">Description</label>
+      <input type="text" pInputText id="description" [(ngModel)]="product.description" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.description">Description is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="brand">Brand</label>
+      <input type="text" pInputText id="brand" [(ngModel)]="product.brand" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.brand">brand is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="echantillon">Echantillon</label>
+      <input type="text" pInputText id="echantillon" [(ngModel)]="product.echantillon" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.echantillon">echantillon is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="quantity">Quantity</label>
+      <input type="text" pInputText id="quantity" [(ngModel)]="product.quantity" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.quantity">Quantity is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="priceSale">Price Sale</label>
+      <input type="text" pInputText id="priceSale" [(ngModel)]="product.priceSale" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.priceSale">Price Sale is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="priceMax">Price Max</label>
+      <input type="text" pInputText id="priceMax" [(ngModel)]="product.priceMax" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.priceMax">Price Max is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="priceFav">Price Fav</label>
+      <input type="text" pInputText id="priceFav" [(ngModel)]="product.priceFav" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.priceFav">Price Fav is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="category">Category</label>
+      <select pInputText id="category" [(ngModel)]="product.category" required autofocus>
+        <option value="CLOTHING">Clothing</option>
+        <option value="ACCESSORIES">Accessories</option>
+        <option value="HOME">Home</option>
+        <option value="SPORT">Sport</option>
+        <option value="BEAUTY">Beauty</option>
+        <option value="ELECTRONICS">Electronics</option>
+        <option value="PETS">Pets</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !product.category">Category is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="status">Status</label>
+      <select pInputText id="status" [(ngModel)]="product.status" required autofocus>
+        <option value="INSTOCK">In Stock</option>
+        <option value="OUTSTOCK">Out of Stock</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !product.status">Status is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="image">Image</label>
+      <input type="file" pInputText id="image" [(ngModel)]="product.image" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !product.image">Image is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="color">Color</label>
+      <select pInputText id="color" [(ngModel)]="selectedColor" required>
+        <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !selectedColor">Color is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="size">Size</label>
+      <select pInputText id="size" [(ngModel)]="selectedSize" required>
+        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !selectedSize">Size is required.</small>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-</ng-template>
+  </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
-
-<div class="text-center text-muted mt-4">Created by Webify Technology</div>

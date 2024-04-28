@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 export class FournisseurComponent implements OnInit {
   selectedUsers: any[] = [];
   providers: any[] = [];
+  user: any = {};
+  selectedProviders: any[] = []
+  userDialog: boolean = false;
   submitted: boolean = false;
   provider: any = {
     name: '',
@@ -18,7 +21,8 @@ export class FournisseurComponent implements OnInit {
     phone: '',
     password: '',
     status: '',
-    role: ''
+    role: '',
+    matriculeFiscale: '',
   };
 
   roles: string[] = ['Fournisseur', 'Instagrammeur'];
@@ -35,28 +39,32 @@ export class FournisseurComponent implements OnInit {
   }
 
   deleteSelectedUsers() {
-    // Implement delete selected users functionality
-  }
+    this.providers = this.providers.filter(provider => !this.selectedProviders.includes(provider));
+    this.selectedProviders = [];  }
 
   editUser(provider: any) {
-    // Implement edit functionality
-  }
+    this.user = { ...provider };
+    this.userDialog = true;  }
 
   deleteUser(provider: any) {
-    // Implement delete user functionality
-  }
+    const index = this.providers.findIndex(p => p.id === provider.id);
+    if (index !== -1) {
+      this.providers.splice(index, 1);
+    }  }
 
   hideDialog() {
-    // Implement hide dialog functionality
-  }
+    this.userDialog = false;
+    this.submitted = false;
+    this.user = {};  }
 
   saveUser() {
-    // Implement save user functionality
-  }
+    this.submitted = true;
+    this.userDialog = false;
+    this.user = {};
+    this.submitted = false; }
 
   ngOnInit(): void {
     this.providers = [
-      // Sample data
       { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123456789', status: 'ACTIVE', role: 'Admin' },
       { id: 2, name: 'Jane Doe', email: 'jane@example.com', phone: '987654321', status: 'INACTIVE', role: 'User' }
     ];

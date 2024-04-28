@@ -5,8 +5,5 @@ export interface User {
   phone?:string;
   password?:string;
   status?:string;
-  //birthday?:Date;
-  //sexe?:string;
   role?:string;
-
 }

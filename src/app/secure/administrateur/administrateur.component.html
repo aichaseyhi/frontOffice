@@ -1,15 +1,15 @@
 <p-toast></p-toast>
 
-<div class="card">
+<div class="card p-4">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button p-button-success p-mr-2" (click)="openNew()"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button p-button-danger" (click)="deleteSelectedUsers()" [disabled]="!selectedUsers || !selectedUsers.length"></button>
         </ng-template>
 
         <ng-template pTemplate="right">
             <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" style="margin-left: 10px;"></button>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button p-button-help" style="margin-left: 10px;"></button>
         </ng-template>
     </p-toolbar>
 
@@ -21,8 +21,8 @@
             <h5 class="p-m-0">Manage Administrators</h5>
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />                </span>
-
+                <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
+            </span>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -46,10 +46,9 @@
             <td>{{users.email }}</td>
             <td>{{users.phone}}</td>
             <td>{{users.status}}</td>
-
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(users)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(users)" style="margin-left: 10px;"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button p-button-rounded p-button-success p-mr-2" (click)="editUser(users)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button p-button-rounded p-button-warning" (click)="deleteUser(users)" style="margin-left: 10px;"></button>
             </td>
         </tr>
     </ng-template>
@@ -68,47 +67,42 @@
         <input type="text" pInputText id="name" [(ngModel)]="user.name" required autofocus />
         <small class="p-invalid" *ngIf="submitted && !user.name">Name is required.</small>
     </div>
-        <div class="p-field">
-            <label for="email">Email</label>
-            <input type="text" pInputText id="email" [(ngModel)]="user.email" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !user.email">email is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="phone">Phone</label>
-            <input type="text" pInputText id="phone" [(ngModel)]="user.phone" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !user.phone">phone is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="password">Password</label>
-            <input type="text" pInputText id="password" [(ngModel)]="user.password" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !user.password">password is required.</small>
-        </div>
+    <div class="p-field">
+        <label for="email">Email</label>
+        <input type="text" pInputText id="email" [(ngModel)]="user.email" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !user.email">email is required.</small>
+    </div>
+    <div class="p-field">
+        <label for="phone">Phone</label>
+        <input type="text" pInputText id="phone" [(ngModel)]="user.phone" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !user.phone">phone is required.</small>
+    </div>
+    <div class="p-field">
+        <label for="password">Password</label>
+        <input type="text" pInputText id="password" [(ngModel)]="user.password" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !user.password">password is required.</small>
+    </div>
 
-            <small class="p-invalid" *ngIf="submitted && !user.sexe">sexe is required.</small>
+    <div class="p-field">
+        <label for="status">Status</label>
+        <select pDropdown id="status" [(ngModel)]="user.status" required autofocus>
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+            <option value="PENDING">PENDING</option>
+        </select>
+        <small class="p-invalid" *ngIf="submitted && !user.status">Status is required.</small>
+    </div>
 
-        <div class="p-field">
-            <label for="status">Status</label>
-            <select  class="text form-control" id="status" name="status">
-              <option value="ACTIVE">ACTIVE</option>
-              <option value="INACTIVE">INACTIVE</option>
-              <option value="PENDING">PENDING</option>
-            </select>
-            <small class="p-invalid" *ngIf="submitted && !user.status">status is required.</small>
-        </div>
-
-        <div class="p-field">
-            <label for="role">Role</label>
-            <input type="text" pInputText id="role" [(ngModel)]="user.role" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !user.role">Role is required.</small>
-        </div>
-
-
-
+    <div class="p-field">
+        <label for="role">Role</label>
+        <input type="text" pInputText id="role" [(ngModel)]="user.role" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !user.role">Role is required.</small>
+    </div>
 </ng-template>
 
 <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-text" (click)="saveUser()"></button>
 </ng-template>
 </p-dialog>
 

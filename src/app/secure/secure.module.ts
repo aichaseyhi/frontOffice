@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router'; // Import RouterModule
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -23,14 +24,13 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
+import { ChatComponent } from './chat/chat.component';
 import { ClientComponent } from './client/client.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { InstagrammersComponent } from './instagrammers/instagrammers.component';
 import { ProduitsComponent } from './produits/produits.component';
 import { StoresComponent } from './stores/stores.component';
-
-
-
+import { OrdersComponent } from './orders/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -40,23 +40,20 @@ import { StoresComponent } from './stores/stores.component';
     ProduitsComponent,
     ClientComponent,
     StoresComponent,
-
-
-
-
-
+    ChatComponent,
+    OrdersComponent,
   ],
   imports: [
     CommonModule,
     TableModule,
     CalendarModule,
-		SliderModule,
-		DialogModule,
-		MultiSelectModule,
-		ContextMenuModule,
-		DropdownModule,
-		ButtonModule,
-		ToastModule,
+    SliderModule,
+    DialogModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    DropdownModule,
+    ButtonModule,
+    ToastModule,
     InputTextModule,
     ProgressBarModule,
     HttpClientModule,
@@ -68,9 +65,9 @@ import { StoresComponent } from './stores/stores.component';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    RouterModule, // Include RouterModule in imports
   ],
   providers: [MessageService, ConfirmationService],
 })
-export class SecureModule { }
+export class SecureModule {}

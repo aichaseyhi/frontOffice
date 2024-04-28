@@ -1,5 +1,6 @@
 export interface Store {
-    id?:string;
+
+  matiere_id?:string;
     name?:string;
-   
+
 }

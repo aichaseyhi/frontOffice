@@ -48,7 +48,16 @@ export class ClientComponent implements OnInit {
       email: this.client.email,
       password: this.client.password,
       status: this.client.status,
-      role: this.client.role
+      role: this.client.role,
+      image: this.client.image,
+      acountLink: this.client.acountLink,
+      street: this.client.street,
+      city: this.client.city,
+      post_code: this.client.post_code,
+      CIN: this.client.CIN,
+      TAXNumber: this.client.TAXNumber,
+      companyName: this.client.companyName,
+      companyUnderConstruction: this.client.companyUnderConstruction,
     };
 
     if (this.client && this.client.name && this.client.name.trim()) {

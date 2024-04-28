@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -31,10 +31,11 @@ import { ChangePasswordRequestComponent } from './auth/change-password-request/c
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { DashbordComponent } from './components/dash/dashbord/dashbord.component';
+import { DashboardComponent } from './components/dash/dashboard/dashboard.component'; // Corrected import statement
 import { HomeComponent } from './components/dash/home/home.component';
 import { NavbarComponent } from './components/dash/navbar/navbar.component';
 import { SideBarComponent } from './components/dash/side-bar/side-bar.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SecureModule } from './secure/secure.module';
 
 
@@ -43,7 +44,7 @@ import { SecureModule } from './secure/secure.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DashbordComponent,
+    DashboardComponent,
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
@@ -51,6 +52,7 @@ import { SecureModule } from './secure/secure.module';
     HomeComponent,
     ChangePasswordRequestComponent,
     ChangePasswordComponent,
+    HomeComponent,
 
   ],
   imports: [
@@ -85,7 +87,13 @@ import { SecureModule } from './secure/secure.module';
     PanelMenuModule,
     MenuModule
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService,
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi   : true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

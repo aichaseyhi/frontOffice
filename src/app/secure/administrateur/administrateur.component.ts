@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 import { User } from './admin';
@@ -15,11 +16,12 @@ export class AdministrateurComponent implements OnInit {
   user: any = {};
   selectedUsers: User[] = [];
   submitted: boolean = false;
+  registerForm!: FormGroup;
 
   constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    this.getAllUser(); // Corrected method name
+    this.getAllUser();
   }
 
   openNew() {
@@ -28,7 +30,7 @@ export class AdministrateurComponent implements OnInit {
     this.userDialog = true;
   }
 
-  getAllUser() { // Corrected method name
+  getAllUser() {
     this.userService.getAllUser()
       .subscribe((resultData: any) => {
         this.users = resultData;
@@ -45,21 +47,21 @@ export class AdministrateurComponent implements OnInit {
   saveUser() {
     this.submitted = true;
 
-    const userData = {
+    const userData: User = {
+      id: this.user.id,
       name: this.user.name,
       email: this.user.email,
       phone: this.user.phone,
       password: this.user.password,
-      sexe: this.user.sexe,
       status: this.user.status,
       role: this.user.role
     };
 
     console.log("User Data", userData);
 
-    if (this.user && this.user.name && this.user.email && this.user.phone && this.user.password && this.user.sexe && this.user.status && this.user.role) {
-      if (this.user.id) {
-        this.userService.updateUser(userData, this.user.id).subscribe(
+    if (userData.name && userData.email && userData.phone && userData.password && userData.status && userData.role) {
+      if (userData.id) {
+        this.userService.updateUser(userData, userData.id).subscribe(
           (res) => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
             this.getAllUser();

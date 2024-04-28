@@ -78,6 +78,41 @@
             <small class="p-invalid" *ngIf="submitted && !client.phone">phone is required.</small>
         </div>
         <div class="p-field">
+          <label for="acountLink">Account Link</label>
+          <input type="text" pInputText id="acountLink" [(ngModel)]="client.acountLink" required autofocus />
+          <small class="p-invalid" *ngIf="submitted && !client.acountLink">Account Link is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="street">Street</label>
+        <input type="text" pInputText id="street" [(ngModel)]="client.street" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !client.street">Street is required.</small>
+    </div>
+     <div class="p-field">
+        <label for="city">City</label>
+        <input type="text" pInputText id="city" [(ngModel)]="client.city" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !client.city">City is required.</small>
+    </div>
+    <div class="p-field">
+      <label for="post_code">Post Code</label>
+      <input type="text" pInputText id="post_code" [(ngModel)]="client.post_code" required autofocus />
+      <small class="p-invalid" *ngIf="submitted && !client.post_code">Post Code is required.</small>
+  </div>
+  <div class="p-field">
+    <label for="CIN">CIN</label>
+    <input type="text" pInputText id="CIN" [(ngModel)]="client.CIN" required autofocus />
+    <small class="p-invalid" *ngIf="submitted && !client.CIN">CIN is required.</small>
+</div>
+<div class="p-field">
+  <label for="companyName">Company Name</label>
+  <input type="text" pInputText id="companyName" [(ngModel)]="client.companyName" required autofocus />
+  <small class="p-invalid" *ngIf="submitted && !client.companyName">Company Name is required.</small>
+</div>
+<div class="p-field">
+  <label for="companyUnderConstruction">Company Under Construction</label>
+  <input type="text" pInputText id="companyUnderConstruction" [(ngModel)]="client.companyName" required autofocus />
+  <small class="p-invalid" *ngIf="submitted && !client.companyUnderConstruction">Company Under Construction is required.</small>
+</div>
+        <div class="p-field">
             <label for="password">Password</label>
             <input type="text" pInputText id="password" [(ngModel)]="client.password" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !client.password">password is required.</small>
@@ -87,6 +122,7 @@
             <label for="status">Status</label>
             <select  class="text form-control" id="status" name="status">
               <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">PENDING</option>
               <option value="INACTIVE">INACTIVE</option>
             </select>
             <small class="p-invalid" *ngIf="submitted && !client.status">status is required.</small>
