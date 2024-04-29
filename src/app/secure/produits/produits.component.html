@@ -18,7 +18,7 @@
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
   <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-          <h5 class="p-m-0">Manage Products</h5>
+          <h5 class="form-title p-m-0">Manage Products</h5>
           <span class="p-input-icon-left">
               <i class="pi pi-search"></i>
               <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
@@ -138,18 +138,20 @@
       <small class="p-invalid" *ngIf="submitted && !product.image">Image is required.</small>
     </div>
     <div class="p-field">
-      <label for="color">Color</label>
-      <select pInputText id="color" [(ngModel)]="selectedColor" required>
-        <option *ngFor="let color of colorOptions" [value]="color">{{ color }}</option>
-      </select>
-      <small class="p-invalid" *ngIf="submitted && !selectedColor">Color is required.</small>
+      <label>Colors : </label>
+      <div *ngFor="let color of colorOptions">
+        <input type="checkbox" name="selectedColors" id="{{ color }}" [(ngModel)]="isCheckedColors[color]" [value]="color" />
+        <label for="{{ color }}">{{ color }}</label>
+      </div>
+      <small class="p-invalid" *ngIf="submitted && !selectedColors.length">Please select at least one color.</small>
     </div>
     <div class="p-field">
-      <label for="size">Size</label>
-      <select pInputText id="size" [(ngModel)]="selectedSize" required>
-        <option *ngFor="let size of sizeOptions" [value]="size">{{ size }}</option>
-      </select>
-      <small class="p-invalid" *ngIf="submitted && !selectedSize">Size is required.</small>
+      <label>Sizes:</label>
+      <div *ngFor="let size of sizeOptions">
+        <input type="checkbox" name="selectedSizes" id="{{ size }}" [(ngModel)]="isCheckedSizes[size]" [value]="size" />
+        <label for="{{ size }}">{{ size }}</label>
+      </div>
+      <small class="p-invalid" *ngIf="submitted && !selectedSizes.length">Please select at least one size.</small>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
@@ -157,4 +159,3 @@
     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
   </ng-template>
 </p-dialog>
-

@@ -8,7 +8,7 @@
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style=""></p-fileUpload>
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-left: 10px"></p-fileUpload>
             <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button p-button-help" style="margin-left: 10px;"></button>
         </ng-template>
     </p-toolbar>
@@ -20,7 +20,7 @@
         <div class="p-d-flex p-ai-center p-jc-between">
             <h5 class="p-m-0">Manage Administrators</h5>
             <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
+                <i class="fas fa-search"></i>
                 <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
             </span>
         </div>
@@ -34,6 +34,10 @@
             <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+            <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+            <th pSortableColumn="poste">Poste <p-sortIcon field="poste"></p-sortIcon></th>
+
+
             <th></th>
         </tr>
     </ng-template>
@@ -46,6 +50,10 @@
             <td>{{users.email }}</td>
             <td>{{users.phone}}</td>
             <td>{{users.status}}</td>
+            <td>{{users.role}}</td>
+            <td>{{users.poste}}</td>
+
+
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button p-button-rounded p-button-success p-mr-2" (click)="editUser(users)"></button>
                 <button pButton pRipple icon="pi pi-trash" class="p-button p-button-rounded p-button-warning" (click)="deleteUser(users)" style="margin-left: 10px;"></button>
@@ -92,6 +100,20 @@
         </select>
         <small class="p-invalid" *ngIf="submitted && !user.status">Status is required.</small>
     </div>
+    <div class="p-field">
+      <label for="poste">Poste</label>
+      <div class="p-formgroup-inline">
+          <div class="p-field-radiobutton">
+              <input type="radio" id="poste1" name="poste" value="Administrator" [(ngModel)]="user.poste" required autofocus />
+              <label for="poste1">Administrator</label>
+          </div>
+          <div class="p-field-radiobutton">
+              <input type="radio" id="poste2" name="poste" value="Operator" [(ngModel)]="user.poste" required autofocus />
+              <label for="poste2">Operator</label>
+          </div>
+      </div>
+      <small class="p-invalid" *ngIf="submitted && !user.poste">Poste is required.</small>
+  </div>
 
     <div class="p-field">
         <label for="role">Role</label>
@@ -107,3 +129,7 @@
 </p-dialog>
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<div class="mt-4 text-center text-muted">
+  <p>Created by Webify Technology</p>
+</div>

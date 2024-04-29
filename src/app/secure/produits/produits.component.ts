@@ -15,10 +15,22 @@ export class ProduitsComponent implements OnInit {
   product: Product = {};
   selectedProducts: Product[] = [];
   submitted: boolean = false;
-  selectedColor: string = '';
   colorOptions: string[] = ['Red', 'Blue', 'Green', 'Yellow', 'Purple'];
+  selectedColors: string[] = [];
+  isCheckedColors: { [key: string]: boolean } = {};
+
+  checkIfSelectedColors(): void {
+    this.selectedColors = Object.keys(this.isCheckedColors).filter(key => this.isCheckedColors[key]);
+  }
+
   sizeOptions: string[] = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
-  selectedSize: string = '';
+  selectedSizes: string[] = [];
+  isCheckedSizes: { [key: string]: boolean } = {};
+
+  checkIfSelectedSizes(): void {
+    this.selectedSizes = Object.keys(this.isCheckedSizes).filter(key => this.isCheckedSizes[key]);
+  }
+
   selectedEchantillon: string = '';
   echantillonOptions: string[] = ['FREE', 'PAID', 'REFUNDED'];
 
@@ -49,8 +61,8 @@ export class ProduitsComponent implements OnInit {
   saveProduct() {
     this.submitted = true;
 
-    if (this.product && this.product.name && this.product.name.trim() && this.selectedColor && this.selectedSize) {
-      const Data = { ...this.product, color: this.selectedColor, size: this.selectedSize };
+    if (this.product && this.product.name && this.product.name.trim() && this.selectedColors.length > 0 && this.selectedSizes.length > 0) {
+      const Data = { ...this.product, color: this.selectedColors, size: this.selectedSizes };
 
       if (this.product.id) {
         this.productService.updateProduct(Data, this.product.id).subscribe((res) => {

@@ -21,7 +21,7 @@ export class AdministrateurComponent implements OnInit {
   constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    this.getAllUser();
+    this.getUsersByRole();
   }
 
   openNew() {
@@ -36,6 +36,12 @@ export class AdministrateurComponent implements OnInit {
         this.users = resultData;
         console.log(this.users);
       });
+  }
+
+  getUsersByRole(){
+    this.userService.getUsersByRole('admin').subscribe((resultData: any) => {this.users = resultData;
+    console.log(this.users);}
+    );
   }
 
   editUser(user: User) {
@@ -54,7 +60,9 @@ export class AdministrateurComponent implements OnInit {
       phone: this.user.phone,
       password: this.user.password,
       status: this.user.status,
-      role: this.user.role
+      role: this.user.role,
+      poste: this.user.poste,
+
     };
 
     console.log("User Data", userData);
@@ -64,7 +72,7 @@ export class AdministrateurComponent implements OnInit {
         this.userService.updateUser(userData, userData.id).subscribe(
           (res) => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
-            this.getAllUser();
+            this.getUsersByRole();
             this.userDialog = false;
           },
           (error) => {
@@ -75,7 +83,7 @@ export class AdministrateurComponent implements OnInit {
         this.userService.saveUser(userData).subscribe(
           (res) => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000 });
-            this.getAllUser();
+            this.getUsersByRole();
             this.userDialog = false;
           },
           (error) => {
@@ -97,7 +105,7 @@ export class AdministrateurComponent implements OnInit {
         this.userService.deleteUser(user.id).subscribe(
           (res: any) => {
             console.log(res);
-            this.getAllUser();
+            this.getUsersByRole();
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
           },
           (error) => {
@@ -119,7 +127,7 @@ export class AdministrateurComponent implements OnInit {
             this.userService.deleteUser(user.id).subscribe(
               (res: any) => {
                 console.log(res);
-                this.getAllUser();
+                this.getUsersByRole();
               },
               (error) => {
                 console.error('Error deleting user:', error);

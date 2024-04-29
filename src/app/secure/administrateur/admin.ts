@@ -1,3 +1,5 @@
+import { RadioButton } from "primeng/radiobutton";
+
 export interface User {
   id?:string;
   name?:string;
@@ -6,4 +8,5 @@ export interface User {
   password?:string;
   status?:string;
   role?:string;
+  poste?:RadioButton;
 }

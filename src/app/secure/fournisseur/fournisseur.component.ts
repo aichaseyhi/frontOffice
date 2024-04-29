@@ -16,22 +16,39 @@ export class FournisseurComponent implements OnInit {
   userDialog: boolean = false;
   submitted: boolean = false;
   provider: any = {
+    image:'',
     name: '',
     email: '',
+    acountLink:'',
     phone: '',
     password: '',
     status: '',
     role: '',
-    matriculeFiscale: '',
+    companyName: '',
+    companyUnderConstruction: '',
+    TAXNumber: '',
+    CIN: '',
+    city:'',
+    street:'',
+    post_code:'',
+
+
+
+
+
   };
 
   roles: string[] = ['Fournisseur', 'Instagrammeur'];
 
 
   providerDialog: boolean = false;
+  fournisseur: any;
 
 
   constructor(private router: Router) { }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   openNew() {
     this.router.navigate(['/new-page']);
@@ -58,15 +75,30 @@ export class FournisseurComponent implements OnInit {
     this.user = {};  }
 
   saveUser() {
-    this.submitted = true;
-    this.userDialog = false;
-    this.user = {};
-    this.submitted = false; }
+      this.submitted = true;
 
-  ngOnInit(): void {
-    this.providers = [
-      { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123456789', status: 'ACTIVE', role: 'Admin' },
-      { id: 2, name: 'Jane Doe', email: 'jane@example.com', phone: '987654321', status: 'INACTIVE', role: 'User' }
-    ];
-  }
+      const Data = {
+        name: this.fournisseur.name,
+        phone: this.fournisseur.phone,
+        email: this.fournisseur.email,
+        password: this.fournisseur.password,
+        status: this.fournisseur.status,
+        role: this.fournisseur.role,
+        image: this.fournisseur.image,
+        acountLink: this.fournisseur.acountLink,
+        street: this.fournisseur.street,
+        city: this.fournisseur.city,
+        post_code: this.fournisseur.post_code,
+        CIN: this.fournisseur.CIN,
+        TAXNumber: this.fournisseur.TAXNumber,
+        companyName: this.fournisseur.companyName,
+        companyUnderConstruction: this.fournisseur.companyUnderConstruction,
+      };
+
+
+
+function ngOnInit() {
+  throw new Error('Function not implemented.');
+}
+}
 }

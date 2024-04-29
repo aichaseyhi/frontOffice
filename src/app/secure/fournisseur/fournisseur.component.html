@@ -30,10 +30,17 @@
             <th style="width: 3rem">
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
+            <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
             <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
             <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
             <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
             <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+            <th pSortableColumn="role">Role <p-sortIcon field="role"></p-sortIcon></th>
+            <th pSortableColumn="companyName">Company Name <p-sortIcon field="companyName">
+
+            </p-sortIcon></th>
+
+
             <th></th>
         </tr>
     </ng-template>
@@ -46,6 +53,12 @@
             <td>{{provider.email }}</td>
             <td>{{provider.phone}}</td>
             <td>{{provider.status}}</td>
+            <td>{{provider.role}}</td>
+            <td>{{provider.Image}}</td>
+            <td>{{provider.companyName}}</td>
+
+
+
 
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(provider)"></button>
@@ -118,4 +131,4 @@
 </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
