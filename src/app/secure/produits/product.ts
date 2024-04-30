@@ -15,6 +15,7 @@ export interface Product {
   color?: string;
   size?: string;
   subcategory?: string;
+  provider_id?: string;
 
 
 }

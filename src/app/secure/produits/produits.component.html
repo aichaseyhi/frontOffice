@@ -31,6 +31,7 @@
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
           <th pSortableColumn="reference">Reference <p-sortIcon field="reference"></p-sortIcon></th>
+          <th pSortableColumn="provider_id">Provider Id <p-sortIcon field="reference"></p-sortIcon></th>
           <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
           <th>Image</th>
           <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
@@ -45,6 +46,7 @@
               <p-tableCheckbox [value]="product"></p-tableCheckbox>
           </td>
           <td>{{products.reference}}</td>
+          <td>{{products.provider_id}}</td>
           <td>{{products.name}}</td>
           <td>{{products.image}}</td>
           <td>{{products.category}}</td>

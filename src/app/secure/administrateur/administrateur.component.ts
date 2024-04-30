@@ -45,11 +45,10 @@ export class AdministrateurComponent implements OnInit {
   }
 
   editUser(user: User) {
-    this.user = { ...user };
-    console.log(user);
+    this.user = {...user};
+    console.log(user)
     this.userDialog = true;
-  }
-
+}
   saveUser() {
     this.submitted = true;
 
