@@ -26,8 +26,7 @@ export class ProduitService {
 
        }
     saveProduct(data:any):Observable<any>{
-        data.category = [1];
-        data.color = [1];
+        //data.category = [1];
         data.subcategory = []
         return this.http.post("http://127.0.0.1:8000/api/products/save", data);
      }

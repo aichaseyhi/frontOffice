@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IvyCarouselModule } from 'carousel-angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -32,12 +34,16 @@ import { ChangePasswordRequestComponent } from './auth/change-password-request/c
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CheckboxGroupComponent } from './components/dash/checkbox-group/checkbox-group.component';
+import { CheckboxComponent } from './components/dash/checkbox/checkbox.component';
 import { DashboardComponent } from './components/dash/dashboard/dashboard.component'; // Corrected import statement
 import { HomeComponent } from './components/dash/home/home.component';
 import { NavbarComponent } from './components/dash/navbar/navbar.component';
 import { SideBarComponent } from './components/dash/side-bar/side-bar.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ProduitsComponent } from './secure/produits/produits.component';
 import { SecureModule } from './secure/secure.module';
+import { SubcategoryService } from './services/subcategory.service';
 
 
 
@@ -51,13 +57,17 @@ import { SecureModule } from './secure/secure.module';
     NavbarComponent,
     SideBarComponent,
     HomeComponent,
+    ProduitsComponent,
     ChangePasswordRequestComponent,
     ChangePasswordComponent,
     HomeComponent,
+    CheckboxComponent,
+    CheckboxGroupComponent
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -87,14 +97,18 @@ import { SecureModule } from './secure/secure.module';
     StyleClassModule,
     PanelMenuModule,
     MenuModule,
+    MultiSelectModule,
     NgApexchartsModule,
+    BrowserAnimationsModule,
+    IvyCarouselModule
   ],
-  providers: [MessageService, ConfirmationService,
+  providers: [MessageService,SubcategoryService,ConfirmationService,
     {
       provide : HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi   : true,
     },
+
   ],
   bootstrap: [AppComponent]
 })

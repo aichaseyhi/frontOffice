@@ -51,8 +51,9 @@ export class FournisseurComponent implements OnInit {
   }
 
   openNew() {
-    this.router.navigate(['/new-page']);
-    console.log('Button clicked!');
+    this.user = {};
+    this.submitted = false;
+    this.userDialog = true;
   }
 
   deleteSelectedUsers() {

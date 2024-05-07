@@ -10,13 +10,13 @@ export class PusherService {
 
 
   constructor() {
-    // this.pusher = new Pusher('YOUR_PUSHER_APP_KEY', {
-    //   cluster: 'YOUR_PUSHER_CLUSTER',
-    //   encrypted: true
-    // });
-  }
+    // this.pusher = new Pusher('8a3ed820322ff1c8eb10', {
+   //  cluster: 'eu',
+   //   encrypted: true
+   //  });
+ // }
 
-  // subscribeToChannel(channelName: string): pusher {
-  //   return this.pusher.subscribe(channelName);
-  // }
+   //subscribeToChannel(front_office: string): pusher {
+  //  return this.pusher.subscribe(front_office);
+   }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrdersComponent } from './orders.component';
+import { CheckboxGroupComponent } from './checkbox-group.component';
 
-describe('OrdersComponent', () => {
-  let component: OrdersComponent;
-  let fixture: ComponentFixture<OrdersComponent>;
+describe('CheckboxGroupComponent', () => {
+  let component: CheckboxGroupComponent;
+  let fixture: ComponentFixture<CheckboxGroupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrdersComponent ]
+      declarations: [ CheckboxGroupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OrdersComponent);
+    fixture = TestBed.createComponent(CheckboxGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

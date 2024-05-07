@@ -10,7 +10,8 @@ import { AdministrateurComponent } from './secure/administrateur/administrateur.
 import { ChatComponent } from './secure/chat/chat.component';
 import { ClientComponent } from './secure/client/client.component';
 import { FournisseurComponent } from './secure/fournisseur/fournisseur.component';
-import { OrdersComponent } from './secure/orders/orders/orders.component';
+import { InstagrammersComponent } from './secure/instagrammers/instagrammers.component';
+import { OrdersComponent } from './secure/orders/orders.component';
 import { ProduitsComponent } from './secure/produits/produits.component';
 import { StoresComponent } from './secure/stores/stores.component';
 
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'store', component: StoresComponent },
       { path: 'chat', component: ChatComponent },
       { path: 'orders', component: OrdersComponent },
+      { path: 'instagrammer', component: InstagrammersComponent },
 
     ],
   },

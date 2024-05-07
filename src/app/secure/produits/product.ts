@@ -7,15 +7,15 @@ export interface Product {
   priceFav?: number;
   priceMax?: number;
   category?: string;
-  image?: string;
+  image?: ImageData[];
   status?: string;
   reference?: string;
   echantillon?: string;
   brand?: string;
-  color?: string;
-  size?: string;
+  colors?:string[];
+  sizes?: string[];
   subcategory?: string;
-  provider_id?: string;
+  //provider_id?: string;
 
 
 }

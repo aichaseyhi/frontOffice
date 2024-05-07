@@ -8,8 +8,9 @@
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-d-inline-block" style="margin-right: 10px;"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" style="margin-left: 10px;"></button>
+          <ng-template pTemplate="right">
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedStores()" [disabled]="!selectedStores || !selectedStores.length"></button>
+          </ng-template>
         </ng-template>
     </p-toolbar>
 

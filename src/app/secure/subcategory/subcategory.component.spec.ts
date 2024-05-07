@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientComponent } from './client.component';
-// stage2024  a.seyhi
-describe('ClientComponent', () => {
-  let component: ClientComponent;
-  let fixture: ComponentFixture<ClientComponent>;
+import { SubcategoryComponent } from './subcategory.component';
+
+describe('SubcategoryComponent', () => {
+  let component: SubcategoryComponent;
+  let fixture: ComponentFixture<SubcategoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClientComponent ]
+      declarations: [ SubcategoryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ClientComponent);
+    fixture = TestBed.createComponent(SubcategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

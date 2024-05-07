@@ -28,20 +28,20 @@ import { ChatComponent } from './chat/chat.component';
 import { ClientComponent } from './client/client.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { InstagrammersComponent } from './instagrammers/instagrammers.component';
-import { OrdersComponent } from './orders/orders/orders.component';
-import { ProduitsComponent } from './produits/produits.component';
+import { OrdersComponent } from './orders/orders.component';
 import { StoresComponent } from './stores/stores.component';
+import { SubcategoryComponent } from './subcategory/subcategory.component';
 
 @NgModule({
   declarations: [
     AdministrateurComponent,
     FournisseurComponent,
     InstagrammersComponent,
-    ProduitsComponent,
     ClientComponent,
     StoresComponent,
     ChatComponent,
     OrdersComponent,
+    SubcategoryComponent,
   ],
   imports: [
     CommonModule,
