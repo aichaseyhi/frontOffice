@@ -12,8 +12,8 @@ export interface Product {
   reference?: string;
   echantillon?: string;
   brand?: string;
-  colors?:string[];
-  sizes?: string[];
+  colors?:any[];
+  sizes?: any[];
   subcategory?: string;
   //provider_id?: string;
 

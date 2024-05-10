@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IvyCarouselModule } from 'carousel-angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -26,6 +26,7 @@ import { RatingModule } from 'primeng/rating';
 import { SliderModule } from 'primeng/slider';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +49,9 @@ import { SubcategoryService } from './services/subcategory.service';
 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +70,7 @@ import { SubcategoryService } from './services/subcategory.service';
 
   ],
   imports: [
+
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -100,8 +105,11 @@ import { SubcategoryService } from './services/subcategory.service';
     MultiSelectModule,
     NgApexchartsModule,
     BrowserAnimationsModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    TagModule,
+    MatButtonToggleModule
   ],
+
   providers: [MessageService,SubcategoryService,ConfirmationService,
     {
       provide : HTTP_INTERCEPTORS,

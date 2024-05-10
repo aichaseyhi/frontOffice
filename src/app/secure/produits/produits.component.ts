@@ -4,13 +4,22 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ProduitService } from 'src/app/services/produit.service';
 import { Product } from './product';
 
+
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css']
 })
 export class ProduitsComponent implements OnInit {
-  @ViewChild('#inputEle') myDOMEle: ElementRef | undefined;
+  FilterUser(searchValue: string): void {
+    console.log('Filtering products with search value:', searchValue);
+}
+
+
+@ViewChild('#inputEle') myDOMEle: ElementRef | undefined;
+users: any;
+  userService: any;
+
 
     getInputValue(){
        let val = this.myDOMEle!.nativeElement.value;
@@ -20,10 +29,17 @@ export class ProduitsComponent implements OnInit {
     }
 
   productDialog: boolean = false;
+  productShowDialog: boolean = false;
+
+
   products: Product[] = [];
   product: Product = {};
   selectedProducts: Product[] = [];
   submitted: boolean = false;
+  selectedProduct: any;
+
+
+
 
   colorOptionExtra = [{ name: "Red" }, { name: "Blue" }, { name: "Green" }, { name: 'Yellow' }, { name: 'Purple' }]
   sizeOptionExtra = [{ name: "XS" }, { name: "S" }, { name: "M" }, { name: 'L' }, { name: 'XL' },{ name: 'XXL' },{ name: 'XXXL' },]
@@ -49,6 +65,7 @@ export class ProduitsComponent implements OnInit {
   echantillonOptions: string[] = ['FREE', 'PAID', 'REFUNDED'];
   selectedSubcategory: string = '';
   subcategoryOptions: string[] = ['HOMME', 'FEMME', 'KIDS', 'UNISEX'];
+  inputSearch: any;
 
   constructor(private productService: ProduitService, private messageService: MessageService, private confirmationService: ConfirmationService,private fb: FormBuilder) { }
 
@@ -67,6 +84,7 @@ export class ProduitsComponent implements OnInit {
     this.productDialog = true;
   }
 
+
   getAllProduct() {
     this.productService.getAllProduct()
       .subscribe((res) => {
@@ -78,6 +96,12 @@ export class ProduitsComponent implements OnInit {
     this.product = { ...product };
     this.productDialog = true;
   }
+
+  showProduct(product: Product) {
+    this.product = { ...product };
+    this.productShowDialog = true;
+  }
+
 
   saveProduct() {
     this.submitted = true;
@@ -122,6 +146,16 @@ export class ProduitsComponent implements OnInit {
         });
       }
     });
+  }
+  updateProductStatus(product: Product) {
+    const newStatus = product.status === 'INSTOCK' ? 'OUTSTOCK' : 'INSTOCK';
+    this.productService.updateProductStatus(product.id, newStatus)
+      .subscribe((res: any) => {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: res.message });
+        this.getAllProduct();
+      }, (error: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update product status' });
+      });
   }
 
   deleteSelectedProducts() {

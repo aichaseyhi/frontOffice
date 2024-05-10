@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 import { User } from './admin';
@@ -10,66 +9,92 @@ import { User } from './admin';
   styleUrls: ['./administrateur.component.css']
 })
 export class AdministrateurComponent implements OnInit {
-
+  displayUpdateStatusDialog: boolean = false;
   userDialog: boolean = false;
-  users: any[] = [];
-  user: any = {};
+  users: User[] = [];
+  user: User = {};
   selectedUsers: User[] = [];
   submitted: boolean = false;
-  registerForm!: FormGroup;
+  filter: { name: string, email: string } = { name: '', email: '' };
+  selectedUser: User | undefined;
+  selectedStatus: string | undefined;
+  filteredUsers: User[];
 
-  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsersByRole();
   }
 
-  openNew() {
+  updateStatusDialog(user: User): void {
+    this.selectedUser = user;
+    this.displayUpdateStatusDialog = true;
+  }
+  filterUsers(value: string): void {
+    // You can implement filtering logic here
+    // For example, filter the 'users' array based on the 'value' entered in the search input
+    // For simplicity, let's assume you have a property named 'filteredUsers' to store the filtered users
+    this.filteredUsers = this.users.filter(user =>
+      user.name.toLowerCase().includes(value.toLowerCase()) ||
+      user.email.toLowerCase().includes(value.toLowerCase())
+    );
+  }
+  openNew(): void {
     this.user = {};
     this.submitted = false;
     this.userDialog = true;
   }
 
-  getAllUser() {
-    this.userService.getAllUser()
-      .subscribe((resultData: any) => {
+  getUsersByRole(): void {
+    this.userService.getUsersByRole('admin').subscribe(
+      (resultData: User[]) => {
         this.users = resultData;
-        console.log(this.users);
-      });
-  }
-
-  getUsersByRole(){
-    this.userService.getUsersByRole('admin').subscribe((resultData: any) => {this.users = resultData;
-    console.log(this.users);}
+      },
+      (error) => {
+        console.error('Error fetching users by role:', error);
+      }
     );
   }
 
-  editUser(user: User) {
-    this.user = {...user};
-    console.log(user)
+  editUser(user: User): void {
+    this.user = { ...user };
     this.userDialog = true;
-}
-  saveUser() {
+  }
+
+  updateUserStatus(status: string): void {
+    if (this.selectedUser && status) {
+      this.userService.updateUserStatus(this.selectedUser.id, status).subscribe(
+        () => {
+          console.log('User status updated successfully');
+          this.hideStatusDialog();
+        },
+        (error) => {
+          console.error('Error updating user status:', error);
+          this.hideStatusDialog();
+        }
+      );
+    } else {
+      console.error('Selected user or status is missing.');
+    }
+  }
+
+  hideStatusDialog(): void {
+    this.displayUpdateStatusDialog = false;
+  }
+
+  saveUser(): void {
     this.submitted = true;
 
-    const userData: User = {
-      id: this.user.id,
-      name: this.user.name,
-      email: this.user.email,
-      phone: this.user.phone,
-      password: this.user.password,
-      status: this.user.status,
-      role: this.user.role,
-      poste: this.user.poste,
+    if (this.user.name && this.user.email && this.user.phone && this.user.password && this.user.status && this.user.role) {
+      const userData: User = { ...this.user };
 
-    };
-
-    console.log("User Data", userData);
-
-    if (userData.name && userData.email && userData.phone && userData.password && userData.status && userData.role) {
       if (userData.id) {
         this.userService.updateUser(userData, userData.id).subscribe(
-          (res) => {
+          () => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Updated', life: 3000 });
             this.getUsersByRole();
             this.userDialog = false;
@@ -80,7 +105,7 @@ export class AdministrateurComponent implements OnInit {
         );
       } else {
         this.userService.saveUser(userData).subscribe(
-          (res) => {
+          () => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Created', life: 3000 });
             this.getUsersByRole();
             this.userDialog = false;
@@ -95,15 +120,14 @@ export class AdministrateurComponent implements OnInit {
     }
   }
 
-  deleteUser(user: User) {
+  deleteUser(user: User): void {
     this.confirmationService.confirm({
       message: `Are you sure you want to delete ${user.name}?`,
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.userService.deleteUser(user.id).subscribe(
-          (res: any) => {
-            console.log(res);
+          () => {
             this.getUsersByRole();
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
           },
@@ -115,7 +139,7 @@ export class AdministrateurComponent implements OnInit {
     });
   }
 
-  deleteSelectedUsers() {
+  deleteSelectedUsers(): void {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected users?',
       header: 'Confirm',
@@ -124,8 +148,7 @@ export class AdministrateurComponent implements OnInit {
         if (this.selectedUsers && this.selectedUsers.length) {
           this.selectedUsers.forEach((user) => {
             this.userService.deleteUser(user.id).subscribe(
-              (res: any) => {
-                console.log(res);
+              () => {
                 this.getUsersByRole();
               },
               (error) => {
@@ -141,9 +164,8 @@ export class AdministrateurComponent implements OnInit {
     });
   }
 
-  hideDialog() {
+  hideDialog(): void {
     this.userDialog = false;
     this.submitted = false;
   }
-
 }

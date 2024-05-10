@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -44,6 +45,7 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     SubcategoryComponent,
   ],
   imports: [
+    MatButtonToggleModule,
     CommonModule,
     TableModule,
     CalendarModule,

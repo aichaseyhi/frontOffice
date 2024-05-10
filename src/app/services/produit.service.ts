@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProduitService {
+  updateProductStatus(productId: number | undefined, newStatus: string): Observable<any> {
+    const body = { status: newStatus };
+    return this.http.put(`http://127.0.0.1:8000/api/products/updateStatus/${productId}`, body);
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -30,4 +34,5 @@ export class ProduitService {
         data.subcategory = []
         return this.http.post("http://127.0.0.1:8000/api/products/save", data);
      }
+
 }
