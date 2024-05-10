@@ -18,7 +18,7 @@ export class AdministrateurComponent implements OnInit {
   filter: { name: string, email: string } = { name: '', email: '' };
   selectedUser: User | undefined;
   selectedStatus: string | undefined;
-  filteredUsers: User[];
+  filteredUsers: User[] = [];
 
   constructor(
     private userService: UserService,
@@ -35,12 +35,9 @@ export class AdministrateurComponent implements OnInit {
     this.displayUpdateStatusDialog = true;
   }
   filterUsers(value: string): void {
-    // You can implement filtering logic here
-    // For example, filter the 'users' array based on the 'value' entered in the search input
-    // For simplicity, let's assume you have a property named 'filteredUsers' to store the filtered users
     this.filteredUsers = this.users.filter(user =>
-      user.name.toLowerCase().includes(value.toLowerCase()) ||
-      user.email.toLowerCase().includes(value.toLowerCase())
+      (user.name && user.name.toLowerCase().includes(value.toLowerCase())) ||
+      (user.email && user.email.toLowerCase().includes(value.toLowerCase()))
     );
   }
   openNew(): void {
