@@ -1,0 +1,46 @@
+<p-toast></p-toast>
+
+<p-table #dt [value]="orders" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']"
+  [(selection)]="selectedOrders" [rowHover]="true" dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          <h5 class="p-m-0">Orders List</h5>
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" #inputSearch placeholder="Search..." (input)="dt.filterGlobal(inputSearch.value, 'contains')" />
+          </span>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="firstName">First Name <p-sortIcon field="firstName"></p-sortIcon></th>
+          <th pSortableColumn="secondName">Second Name <p-sortIcon field="secondName"></p-sortIcon></th>
+          <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+          <th pSortableColumn="phone">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-order>
+      <tr>
+          <td>
+              <p-tableCheckbox [value]="order"></p-tableCheckbox>
+          </td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.email }}</td>
+          <td>{{ order.phone }}</td>
+          <td>{{ order.status }}</td>
+          <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button p-button-success p-mr-2" (click)="updateOrderStatus(status)"></button>
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          In total there are {{ orders ? orders.length : 0 }} orders
+      </div>
+  </ng-template>
+</p-table>
